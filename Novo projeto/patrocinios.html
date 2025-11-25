@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elenco - H4B Redesign</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> 
+</head>
+<body>
+
+    <!-- Início do cabeçalho principal do site -->
+    <header class="header">
+        <!-- Área destinada à logo do time ou do site -->
+        <div class="logoArea">
+            <!-- Container que agrupa a imagem da logo e o texto -->
+            <div class="logoContainer">
+                <!-- Imagem da logo do time H4B F.C. -->
+                <img src="time/logo.png" alt="Logo H4B F.C." class="logoImg">
+                 <!-- Texto que aparece abaixo da logo, mostrando o nome do time -->
+                <span class="logoTextBottom">H4B F.C</span>
+            </div>
+        </div>
+        <!-- Barra de navegação superior do site -->
+        <nav class="topNav">
+            <!-- Link que leva o usuário para a página de login -->
+            <a href="login.html">LOGIN</a> 
+            <!-- Caixa de destaque com chamada para associação -->
+            <div class="socioBox">
+                 <!-- Texto dividido em duas linhas: “SEJA” e “SÓCIO!” -->
+                SEJA <br> <span class="destaque">SÓCIO!</span>
+            </div>
+        </nav>
+    </header>
+    
+
+     <!-- Início do conteúdo principal da página -->
+    <main class="mainContent">
+        <!-- Seção que exibe as informações sobre a próxima partida -->
+        <div class="matchInfo">
+            <div class="matchDetails">
+                <!-- Container com os detalhes específicos do jogo -->
+                <span class="time">SÁBADO | 18:00</span>
+                <!-- Agrupa os nomes dos times e o texto "VS" -->
+                <div class="teams">
+                    <!-- Nome do time da casa -->
+                    <span class="teamName">H4B</span> 
+                    <!-- Texto que separa os dois times -->
+                    <span class="vs">VS</span>
+                    <!-- Nome do time visitante --> 
+                    <span class="teamName">Flamengo</span>
+                </div>
+                <!-- Botão para acesso à página de ingressos -->
+            <!-- OBS: É preferível estilizar o link <a> como botão no CSS em vez de colocá-lo dentro de <button> -->
+                <button class="ticketsButton"><a href="ingressos.html" class="acessIngressos">INGRESSOS</a></button>
+            </div>
+             <!-- Título principal da seção de futebol profissional -->
+            <h1 class="pageTitle">Futebol Profissional</h1>
+        </div>
+
+       <!-- Barra de navegação do elenco e páginas relacionadas -->
+        <nav class="elencoNav">
+             <!-- Link ativo: indica que o usuário está atualmente na página de elenco -->
+            <a href="index.html">ELENCO</a>
+           <!-- Link para a página da comissão técnica -->
+            <a href="comissao.html">COMISSÃO TÉCNICA</a>
+             <!-- Link para a página de patrocinadores -->
+            <a href="patrocinios.html" class="active">PATROCÍONIOS</a>
+             <!-- Link para a página de títulos conquistados -->
+            <a href="titulos.html">TÍTULOS</a>
+            <!-- Link para a página de história do time -->
+            <a href="historia.html">HISTÓRIA</a>
+        </nav>
+
+        <section class="partnerships-section">
+        
+        <div class="group-category">
+            <h2>PATROCINADORES</h2>
+            <div class="logo-group main-sponsor">
+                <img src="patrocinios/eco verde.png" alt="Sportingbet Logo" class="logo-img large">
+            </div>
+        </div>
+
+        <div class="group-category">
+            <div class="logo-group secondary-sponsors">
+                <img src="patrocinios/icone.png" alt="icone Logo" class="logo-img">
+                <img src="patrocinios/açai.png" alt="açai Logo" class="logo-img">
+                <img src="patrocinios/nexel.png" alt="Sil Logo" class="logo-img">
+                <img src="patrocinios/GIV.png" alt="GIV Logo" class="logo-img">
+                <img src="patrocinios/ZAP.png" alt="ZAP Logo" class="logo-img">
+            </div>
+
+        </div>
+
+        <div class="group-category">
+            <h2>PARCEIROS</h2>
+            <div class="logo-group partners">
+                <img src="patrocinios/Z.png" alt="Pernambucanas Logo" class="logo-img">
+                <img src="patrocinios/elo.png" alt="Elo Logo" class="logo-img">
+                <img src="patrocinios/gopro.png" alt="Canon Logo" class="logo-img">
+                <img src="patrocinios/gatorade.png" alt="Gatorade Logo" class="logo-img">
+                <img src="patrocinios/grama.png" alt="IA Logo" class="logo-img">
+                <img src="patrocinios/pernambucanas.png" alt="WeMobi Logo" class="logo-img">               
+            </div>
+
+        </div>
+
+       <!-- Seção de grupo de patrocínios ou apoios -->
+       <div class="group-category">
+          <!-- Título da categoria de patrocínio -->
+            <h2>APOIO</h2>
+            <!-- Container que agrupa os logos dos patrocinadores -->
+                <div class="logo-group support">
+                <!-- Logo do patrocinador ou instituição de apoio -->
+                <img src="patrocinios/ifood.png" alt="Lei de Incentivo ao Esporte Logo" class="logo-img small">
+                <!-- Logo de outro patrocinador ou parceiro -->
+                <img src="patrocinios/sao paulo.png" alt="Logo Boto Branco" class="logo-img small">
+            </div>
+      </div>
+
+        
+    </section>
+                
+            
+            </div>
+        </section>
+
+        <div class="accessibility-icon">
+            &#9855;
+        </div>
+    </main>
+
+     <!-- Início do rodapé principal do site -->
+    <footer class="mainFooter">
+        <!-- Container que agrupa todo o conteúdo do rodapé -->
+        <div class="footerContent">
+            <!-- Área esquerda: direitos autorais -->
+            <div class="footerLeft">
+                <!-- Texto com o ano e aviso de direitos reservados -->
+                <p>&copy; 2025 H4B F.C Todos os direitos reservados.</p>
+            </div>
+             <!-- Área central: logo do time (versão branca para fundo escuro) -->
+            <div class="footerCenter">
+                <img src="time/logo boto branco.png" alt="Logo Golfinho" class="footerLogoImg">
+            </div>
+             <!-- Navegação do rodapé com links úteis -->
+            <nav class="footerNav">
+                  <!-- Link para a política de privacidade -->
+                <a href="#">Política de Privacidade</a>
+                <!-- Separador visual entre os links -->
+                <span class="separator">|</span>
+                  <!-- Link para os termos de uso -->
+                <a href="#">Termos de Uso</a>
+                <!-- Separador visual -->
+                <span class="separator">|</span>
+                <!-- Link para a página de contato -->
+                <a href="#">Contato</a>
+            </nav>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

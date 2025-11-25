@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elenco - H4B Redesign</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> 
+</head>
+<body>
+
+    <!-- Início do cabeçalho principal do site -->
+    <header class="header">
+        <!-- Área destinada à logo do time ou do site -->
+        <div class="logoArea">
+            <!-- Container que agrupa a imagem da logo e o texto -->
+            <div class="logoContainer">
+                <!-- Imagem da logo do time H4B F.C. -->
+                <img src="time/logo.png" alt="Logo H4B F.C." class="logoImg">
+                 <!-- Texto que aparece abaixo da logo, mostrando o nome do time -->
+                <span class="logoTextBottom">H4B F.C</span>
+            </div>
+        </div>
+        <!-- Barra de navegação superior do site -->
+        <nav class="topNav">
+            <!-- Link que leva o usuário para a página de login -->
+            <a href="login.html">LOGIN</a> 
+            <!-- Caixa de destaque com chamada para associação -->
+            <div class="socioBox">
+                 <!-- Texto dividido em duas linhas: “SEJA” e “SÓCIO!” -->
+                SEJA <br> <span class="destaque">SÓCIO!</span>
+            </div>
+        </nav>
+    </header>
+    
+<!-- Início do conteúdo principal da página -->
+    <main class="mainContent">
+        <!-- Seção que exibe informações da próxima partida -->
+        <div class="matchInfo">
+             <!-- Container com detalhes específicos do jogo -->
+            <div class="matchDetails">
+                 <!-- Exibe o dia e horário da partida -->
+                <span class="time">SÁBADO | 18:00</span>
+                <!-- Agrupa os nomes dos times e o texto "VS" -->
+                <div class="teams">
+                     <!-- Nome do time da casa -->
+                    <span class="teamName">H4B</span> 
+                    <!-- Texto que separa os dois times -->
+                    <span class="vs">VS</span> 
+                     <!-- Nome do time visitante -->
+                    <span class="teamName">Flamengo</span>
+                </div>
+                <!-- Botão para acessar a página de compra de ingressos -->
+               <!-- OBS: colocar <a> dentro de <button> não é recomendado; melhor estilizar o link como botão -->
+               <button class="ticketsButton"><a href="ingressos.html" class="acessIngressos">INGRESSOS</a></button>
+            </div>
+             <!-- Título principal da seção -->
+            <h1 class="pageTitle">Futebol Profissional</h1>
+        </div>
+
+        <!-- Navegação interna relacionada ao elenco, comissão técnica e história do clube -->
+        <nav class="elencoNav">
+            <!-- Link que leva para a página principal do elenco -->
+            <a href="index.html">ELENCO</a>
+             <!-- Link para a página da comissão técnica -->
+            <a href="comissao.html">COMISSÃO TÉCNICA</a>
+             <!-- Link para a página de patrocinadores do time -->
+            <a href="patrocinios.html">PATROCÍONIOS</a>
+            <!-- Link para a página que mostra os títulos conquistados -->
+            <a href="titulos.html">TÍTULOS</a>
+            <!-- Link ativo, indicando que o usuário está na página de História -->
+    <!-- A classe "active" permite destacar visualmente este link via CSS -->
+            <a href="historia.html" class="active">HISTÓRIA</a>
+        </nav>
+       
+          <!-- Seção que destaca uma funcionalidade ou tema específico da página -->
+           <section class="singleFeatureSection">
+            <!-- Seção dedicada ao histórico dos uniformes/mantos do time -->
+            <section class="jerseyHistory">
+                <!-- Título principal desta seção, indicando o conteúdo: histórico de mantos -->
+            <h1 class="mainTitleHistory">Histórico de mantos</h1>   
+            </section>
+
+        <h1>2023 - 2025</h1> <div class="carouselContainer">
+        
+        <button class="nav-arrow left" onclick="scrollCarousel(-1)">&#10094;</button> 
+        
+        <div class="carouselTrack " id="jersey-track">
+            
+            <div class="jerseyItem">
+                <img src="camisa/1-2025.png" alt="Camisa 1 - 2025" class="jerseyImg">
+                <span class="jerseyYearTag">1 - 2025</span>
+            </div>
+            
+            <div class="jerseyItem">
+                <img src="camisa/2-2025.png" alt="Camisa 1971-1972" class="jerseyImg">
+                <span class="jerseyYearTag">2 - 2025</span>
+            </div>
+
+            <div class="jerseyItem">
+                <img src="camisa/3-2025.png" alt="Camisa 1971-1972" class="jerseyImg">
+                <span class="jerseyYearTag">3 - 2025</span>
+            </div>
+
+            <div class="jerseyItem">
+                <img src="camisa/1- 2024.png" alt="Camisa 1 - 2024" class="jerseyImg">
+                <span class="jerseyYearTag">1 - 2024</span>
+            </div>
+
+            <div class="jerseyItem">
+                <img src="camisa/2- 2024.png" alt="Camisa 1971-1972" class="jerseyImg">
+                <span class="jerseyYearTag">2 - 2024</span>
+            </div>
+
+            <div class="jerseyItem">
+                <img src="camisa/3- 2024.png" alt="Camisa 3 - 2024" class="jerseyImg">
+                <span class="jerseyYearTag">3 - 2024</span>
+            </div>
+
+            <div class="jerseyItem">
+                <img src="camisa/1- 2023.png" alt="Camisa 1 - 2023" class="jerseyImg">
+                <span class="jerseyYearTag">1 - 2023</span>
+            </div>
+
+            <div class="jerseyItem">
+                <img src="camisa/2- 2023.png" alt="Camisa 2 - 2023" class="jerseyImg">
+                <span class="jerseyYearTag">2 - 2023</span>
+            </div>
+            
+            <div class="jerseyItem">
+                <img src="camisa/3-2023.png" alt="Camisa 3 - 2023" class="jerseyImg">
+                <span class="jerseyYearTag">3 - 2023</span>
+
+                
+            </div>
+        </div>
+        
+        <!-- Botão de navegação do carrossel/galeria à direita -->
+        <!-- O caractere &#10095; representa a seta ">" (direita) em Unicode -->
+        <button class="nav-arrow right" onclick="scrollCarousel(1)">&#10095;</button>
+        <!-- 
+        Classe "nav-arrow right" permite estilização específica do botão à direita. 
+        O atributo onclick chama a função JavaScript scrollCarousel passando "1" como parâmetro, 
+        provavelmente para avançar o carrossel em uma posição.
+        -->
+    </div>
+
+     <!-- Seção dedicada ao histórico de uniformes/mantos -->
+    <section class="jerseyHistory">
+          <!-- Seção interna específica para histórico de escudos -->
+            <section class="jerseyHistory">
+                 <!-- Título da subseção -->
+            <h1 class="mainTitleHistory">Histórico de Escudos</h1>   
+            </section>
+
+<!-- Seção que contém a grade de fotos/escudos do time -->
+<section class="photos-grid-section">
+     <!-- Container que organiza os itens da grade -->
+    <div class="photos-grid-container">
+         <!-- Item individual da grade de fotos -->
+        <div class="photo-item">
+             <!-- Imagem do escudo atual do time -->
+            <img src="time/logo.png" alt="Atual Escudo" class="grid-photo">
+            <!-- Legenda da foto -->
+            <span class="photo-caption">Atual Escudo</span>
+        </div>
+         <!-- Item individual da grade de fotos -->
+        <div class="photo-item">
+              <!-- Imagem do escudo secundário do time -->
+            <img src="time/logo boto.png" alt="Escudo Secundário" class="grid-photo">
+            <!-- Legenda da foto -->
+            <span class="photo-caption">Escudo Secundário</span>
+        </div>
+         <!-- Item individual da grade de fotos -->
+        <div class="photo-item">
+             <!-- Imagem de outro escudo antigo do time -->
+            <img src="time/hellbound.png" alt="Segundo Escudo" class="grid-photo">
+             <!-- Legenda da foto -->
+            <span class="photo-caption">Segundo Escudo</span>
+        </div>
+
+         <!-- Item individual da grade de fotos -->
+        <div class="photo-item">
+             <!-- Imagem do primeiro escudo do time -->
+            <img src="time/logo com coroa normal preto.png" alt="Primeiro Escudo" class="grid-photo">
+            <!-- Legenda da foto -->
+            <span class="photo-caption">Primeiro Escudo</span>
+        </div> <!-- Fim do container da grade de fotos -->
+
+        </div> <!-- Fim da seção de fotos -->
+</section>
+
+<!-- Seção principal relacionada à história do estádio -->
+   <section class="jerseyHistory">
+    <!-- Sub-seção destacada dentro da história -->
+    <section class="singleFeatureSection">
+        <!-- Seção interna que apresenta o título da subseção -->
+            <section class="jerseyHistory">
+                <!-- Título principal do conteúdo: nome do estádio -->
+            <h1 class="mainTitleHistory">Abdallah Habib Stadium</h1>   
+            </section>
+
+            <!-- Bloco de destaque contendo imagem e texto descritivo -->
+    <div class="featureBlock ">
+        <!-- Imagem ilustrativa do estádio -->
+        <img src="time/estadio.png" alt="estadio" class="featureImage">
+       <!-- Texto explicativo sobre o estádio e sua importância -->
+        <p class="featureText">
+            O ano de 2023 marcou o início de uma era, com a construção do nosso primeiro estádio e a paixão da torcida pulsando nas arquibancadas. Uma jornada de glórias e superações.
+        </p>
+    </div>
+</section>
+          <!-- Seção de título principal sobre o mascote -->
+            <section class="jerseyHistory">
+                <!-- Título da seção -->
+            <h1 class="mainTitleHistory">Nosso Mascote</h1>   
+            </section>
+           <!-- Seção com layout lado a lado (imagem + texto) -->
+            <section class="side-by-side-section">
+      <!-- Container que organiza os elementos em colunas -->
+    <div class="side-by-side-container">
+        
+        <div class="media-column">
+            <!-- Imagem ilustrativa do mascote do time -->
+            <img src="time/mascote.png" alt="Foto de destaque com texto ao lado" class="responsive-media">
+        </div>
+         
+        <!-- Coluna de texto descritivo -->
+        <div class="text-column">
+             <!-- Subtítulo com o nome do mascote -->
+            <h2 class="story-title">Amazônio</h2>
+              <!-- Parágrafo descrevendo a história e características do mascote -->
+            <p class="story-text">
+                Conheça o Amazônio, o mascote mais carismático e forte das águas! Inspirado no lendário boto-cor-de-rosa da Amazônia, ele combina a mística da floresta com uma energia esportiva imbatível. Com um físico musculoso e uma expressão sempre confiante e amigável, o Amazônio veste as cores da vitória: preto e rosa vibrante. Ele é um símbolo de astúcia, rapidez, e a alegria contagiante do esporte brasileiro. Ah, e não se engane com o sorriso contagiante: o Amazônio também adora uma boa travessura.
+            </p>
+        </div> <!-- Fim do container lado a lado -->
+        
+    </div>
+</section> <!-- Fim da seção sobre o mascote -->
+</section>
+
+     <!-- Ícone de acessibilidade fixado na tela -->
+        <div class="accessibility-icon">
+            <!-- Símbolo Unicode ♿ (representa acessibilidade) -->
+            &#9855;
+        </div>
+        <!-- Fim do conteúdo principal da página -->
+    </main>
+
+    <!-- Início do rodapé principal do site -->
+    <footer class="mainFooter">
+        <!-- Container que agrupa todo o conteúdo do rodapé -->
+        <div class="footerContent">
+            <!-- Área esquerda: direitos autorais -->
+            <div class="footerLeft">
+                <!-- Texto com o ano e aviso de direitos reservados -->
+                <p>&copy; 2025 H4B F.C Todos os direitos reservados.</p>
+            </div>
+             <!-- Área central: logo do time (versão branca para fundo escuro) -->
+            <div class="footerCenter">
+                <img src="time/logo boto branco.png" alt="Logo Golfinho" class="footerLogoImg">
+            </div>
+            
+             <!-- Navegação do rodapé com links úteis -->
+            <nav class="footerNav">
+                  <!-- Link para a política de privacidade -->
+                <a href="#">Política de Privacidade</a>
+                <!-- Separador visual entre os links -->
+                <span class="separator">|</span>
+                  <!-- Link para os termos de uso -->
+                <a href="#">Termos de Uso</a>
+                <!-- Separador visual -->
+                <span class="separator">|</span>
+                <!-- Link para a página de contato -->
+                <a href="#">Contato</a>
+            </nav>
+            
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

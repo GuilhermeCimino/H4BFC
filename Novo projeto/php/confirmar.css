@@ -1,0 +1,25 @@
+/* Reset de margens e paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a; /* Cor de fundo escura */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+}
+
+/* Mensagem de erro (caso o jogador não seja encontrado, por exemplo) */
+p {
+    color: #ff4081;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 20px;
+}

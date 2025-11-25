@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elenco - H4B Redesign</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> 
+</head>
+<body>
+
+    <!-- Início do cabeçalho principal do site -->
+    <header class="header">
+        <!-- Área destinada à logo do time ou do site -->
+        <div class="logoArea">
+              <!-- Container que agrupa a imagem da logo e o texto -->
+            <div class="logoContainer">
+                 <!-- Imagem da logo do time H4B F.C. -->
+                <img src="time/logo.png" alt="Logo H4B F.C." class="logoImg">
+                <!-- Texto que aparece abaixo da logo, mostrando o nome do time -->
+                <span class="logoTextBottom">H4B F.C</span>
+            </div>
+        </div>
+        <!-- Barra de navegação superior do site -->
+        <nav class="topNav">
+             <!-- Link que leva o usuário para a página de login -->
+            <a href="login.html">LOGIN</a> 
+            <div class="socioBox">
+                  <!-- A palavra “SÓCIO!” recebe um destaque especial via CSS -->
+                SEJA <br> <span class="destaque">SÓCIO!</span>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Início do conteúdo principal da página -->
+    <main class="mainContent">
+        <!-- Seção que mostra informações sobre a próxima partida -->
+        <div class="matchInfo">
+            <!-- Container com os detalhes específicos do jogo -->
+            <div class="matchDetails">
+                 <!-- Exibe o dia e o horário da partida -->
+                <span class="time">SÁBADO | 18:00</span>
+                <!-- Agrupa os nomes dos times e o texto "VS" -->
+                <div class="teams">
+                      <!-- Nome do time da casa -->
+                    <span class="teamName">H4B</span> 
+                     <!-- Texto que separa os dois times -->
+                    <span class="vs">VS</span> 
+                     <!-- Nome do time adversário -->
+                    <span class="teamName">Flamengo</span>
+                </div>
+                <!-- Botão para acessar a página de compra de ingressos -->
+            <!-- O link interno dentro do botão leva à página "ingressos.html" -->
+               <button class="ticketsButton"><a href="ingressos.html" class="acessIngressos">INGRESSOS</a></button>
+            </div>
+             <!-- Título principal da seção, indicando o tipo de conteúdo exibido -->
+            <h1 class="pageTitle">Futebol Profissional</h1>
+        </div>
+
+        <!-- Barra de navegação específica da seção "Elenco" e páginas relacionadas -->
+        <nav class="elencoNav">
+             <!-- Link que leva para a página principal do elenco -->
+            <a href="index.html">ELENCO</a> 
+            <!-- Link ativo, indicando que o usuário está na página da comissão técnica -->
+            <a href="comissao.html" class="active">COMISSÃO TÉCNICA</a>
+            <!-- Link para a página de patrocinadores do time -->
+            <a href="patrocinios.html">PATROCÍONIOS</a>
+            <!-- Link para a página que mostra os títulos conquistados -->
+            <a href="titulos.html">TÍTULOS</a>
+             <!-- Link para a página de história do time -->
+            <a href="historia.html">HISTÓRIA</a>
+        </nav>
+       <!-- Seção que lista os membros do elenco ou comissão técnica -->
+        <section class="squadList">
+            <!-- Cartão individual de um membro (jogador ou técnico) -->
+            <!-- O atributo "data-player-id" pode ser usado em scripts JS para identificar o membro -->
+            <div class="playerCard " data-player-id="0">  
+                 <!-- Área reservada para a foto do membro -->              
+                <div class="photoPlaceholder">
+                     <!-- Imagem do técnico Fabricio -->
+                    <img src="comisão/Fabricio.jpeg" alt="Foto do treinador Fabricio">
+                </div> 
+                 <!-- Caixa com informações do membro (nome e função) -->
+                <div class="infoBox">
+                     <!-- Nome completo do membro -->
+                    <span class="name">Fabricio Bruto</span>
+                    <!-- Cargo ou posição (neste caso, técnico) -->
+                    <span class="position">Técnico</span>
+                </div>
+            </div>
+
+            <!-- Cartão individual da auxiliar técnica Raquel -->
+            <div class="playerCard" data-player-id="0">
+                 <!-- Área reservada para a foto do membro -->
+                <div class="photoPlaceholder">
+                     <!-- Imagem da auxiliar técnica Raquel -->
+                    <img src="comisão/Raquel.jpeg" alt="Foto da auxiliar técnica Raquel">
+                </div>
+                <!-- Caixa com informações do membro (nome e cargo) -->
+                <div class="infoBox">
+                     <!-- Nome completo da auxiliar técnica -->
+                    <span class="name">Raquel Dos Anjos</span>
+                    <!-- Cargo ou função dentro da comissão técnica -->
+                    <span class="position">Auxiliar Técnica</span>
+                </div>
+            </div>
+           <!-- Cartão individual da auxiliar técnica Isabella -->
+            <div class="playerCard" data-player-id="0">
+                <!-- Área reservada para a foto do membro -->
+                <div class="photoPlaceholder">
+                     <!-- Imagem da auxiliar técnica Isabella -->
+                    <img src="comisão/Isabella.jpeg" alt="Foto da auxiliar técnica Isabella">
+                </div>
+                  <!-- Caixa com informações do membro (nome e cargo) -->
+                <div class="infoBox">
+                     <!-- Nome completo da auxiliar técnica -->
+                    <span class="name">Isabella Jacques</span>
+                     <!-- Cargo ou função dentro da comissão técnica -->
+                    <span class="position">Auxiliar Técnica</span>
+                </div>
+            </div>
+
+
+        </section>
+                
+            
+            </div>
+        </section>
+
+        <!-- Ícone de acessibilidade -->
+        <!-- O símbolo &#9855; representa um ícone Unicode usado para indicar recursos de acessibilidade -->
+        <div class="accessibility-icon">
+            &#9855;
+        </div>
+        <!-- Fim do conteúdo principal da página -->
+    </main>
+
+    <!-- Início do rodapé principal do site -->
+    <footer class="mainFooter">
+        <!-- Container que agrupa todo o conteúdo do rodapé -->
+        <div class="footerContent">
+             <!-- Área à esquerda do rodapé: informações de direitos autorais -->
+            <div class="footerLeft">
+                <!-- Texto indicando o ano e os direitos reservados ao time -->
+                <p>&copy; 2025 H4B F.C Todos os direitos reservados.</p>
+            </div>
+            <!-- Área central do rodapé: exibe a logo -->
+            <div class="footerCenter">
+                 <!-- Imagem da logo (provavelmente uma versão branca para fundo escuro) -->
+                <img src="time/logo boto branco.png" alt="Logo Golfinho" class="footerLogoImg">
+            </div>
+            
+
+            <!-- Navegação adicional no rodapé, normalmente para políticas e contatos -->
+            <nav class="footerNav">
+                <!-- Link para a página de Política de Privacidade -->
+                <a href="#">Política de Privacidade</a>
+                <!-- Separador visual entre os links -->
+                <span class="separator">|</span>
+                <!-- Link para a página de Termos de Uso -->
+                <a href="#">Termos de Uso</a>
+                <!-- Separador visual entre os links -->
+                <span class="separator">|</span>
+                <!-- Link para a página de Contato -->
+                <a href="#">Contato</a>
+            </nav>
+            <!-- Fim do container principal do rodapé -->
+        </div>
+        <!-- Fim do rodapé principal -->
+    </footer>
+    
+    <!-- Inclusão do arquivo JavaScript externo -->
+<!-- O navegador irá carregar e executar o script presente em "script.js" -->
+    <script src="script.js"></script>
+</body>
+</html>

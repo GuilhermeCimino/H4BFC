@@ -1,0 +1,121 @@
+/* Reset de margens e paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a; /* Cor de fundo escura */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+}
+
+/* Container do formulário */
+.form-container {
+    background-color: #333; /* Cor do fundo do formulário */
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    width: 400px;
+    text-align: center;
+}
+
+/* Estilo dos títulos */
+h2 {
+    margin-bottom: 25px;
+    text-align: center;
+    color: #ffffff; /* Cor do título */
+    font-weight: 600;
+    font-size: 24px;
+}
+
+/* Estilo dos campos de entrada */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    background-color: #444;
+    color: #eee;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #ff4081; /* Cor da borda quando o campo é focado */
+}
+
+/* Estilo do botão */
+.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff4081; /* Cor do botão */
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #e60073; /* Cor do botão quando passa o mouse */
+}
+
+/* Estilo dos links de ação (como "Esqueceu a senha?") */
+.actions a {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+}
+
+.actions a:hover {
+    color: #ff4081; /* Cor do link quando passa o mouse */
+}
+
+/* Botões adicionais */
+.actions button {
+    width: 100%;
+    padding: 12px;
+    background-color: #555; /* Cor de fundo do botão de ação */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.actions button:hover {
+    background-color: #777; /* Cor do botão de ação quando passa o mouse */
+}
+
+/* Mensagem de erro (caso o jogador não seja encontrado, por exemplo) */
+p {
+    color: #ff6666;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 20px;
+}

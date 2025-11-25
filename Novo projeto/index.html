@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elenco - H4B Redesign</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> 
+</head>
+<body>
+
+    <!-- Início do cabeçalho principal do site -->
+    <header class="header">
+        <!-- Área destinada à logo do time ou do site -->
+        <div class="logoArea">
+            <!-- Container que agrupa a imagem da logo e o texto -->
+            <div class="logoContainer">
+                <!-- Imagem da logo do time H4B F.C. -->
+                <img src="time/logo.png" alt="Logo H4B F.C." class="logoImg">
+                 <!-- Texto que aparece abaixo da logo, mostrando o nome do time -->
+                <span class="logoTextBottom">H4B F.C</span>
+            </div>
+        </div>
+        
+        <!-- Barra de navegação superior do site -->
+        <nav class="topNav">
+            <!-- Link que leva o usuário para a página de login -->
+            <a href="login.html">LOGIN</a> 
+            <!-- Caixa de destaque com chamada para associação -->
+            <div class="socioBox">
+                 <!-- Texto dividido em duas linhas: “SEJA” e “SÓCIO!” -->
+                SEJA <br> <span class="destaque">SÓCIO!</span>
+            </div>
+        </nav>
+    </header>
+    
+
+    <!-- Início do conteúdo principal da página -->
+    <main class="mainContent">
+        <!-- Seção que exibe as informações sobre a próxima partida -->
+        <div class="matchInfo">
+            <div class="matchDetails">
+                <!-- Container com os detalhes específicos do jogo -->
+                <span class="time">SÁBADO | 18:00</span>
+                <!-- Agrupa os nomes dos times e o texto "VS" -->
+                <div class="teams">
+                    <!-- Nome do time da casa -->
+                    <span class="teamName">H4B</span> 
+                    <!-- Texto que separa os dois times -->
+                    <span class="vs">VS</span>
+                    <!-- Nome do time visitante --> 
+                    <span class="teamName">Flamengo</span>
+                </div>
+                <!-- Botão para acesso à página de ingressos -->
+            <!-- OBS: É preferível estilizar o link <a> como botão no CSS em vez de colocá-lo dentro de <button> -->
+                <button class="ticketsButton"><a href="ingressos.html" class="acessIngressos">INGRESSOS</a></button>
+            </div>
+             <!-- Título principal da seção de futebol profissional -->
+            <h1 class="pageTitle">Futebol Profissional</h1>
+        </div>
+
+        <!-- Barra de navegação do elenco e páginas relacionadas -->
+        <nav class="elencoNav">
+            
+             <!-- Link ativo: indica que o usuário está atualmente na página de elenco -->
+            <a href="index.html" class="active">ELENCO</a>
+           <!-- Link para a página da comissão técnica -->
+            <a href="comissao.html">COMISSÃO TÉCNICA</a>
+             <!-- Link para a página de patrocinadores -->
+            <a href="patrocinios.html">PATROCÍONIOS</a>
+             <!-- Link para a página de títulos conquistados -->
+            <a href="titulos.html">TÍTULOS</a>
+            <!-- Link para a página de história do time -->
+            <a href="historia.html">HISTÓRIA</a>
+        </nav>
+
+        <!-- Seção que exibe a lista de jogadores do elenco -->
+        <section class="squadList">
+             <!-- Cartão individual representando um jogador -->
+    <!-- O atributo data-player-id pode ser usado em JavaScript para identificar o jogador -->
+            <div class="playerCard" data-player-id="16">
+                <!-- Número do jogador na camisa -->
+                <span class="number">16</span>
+                  <!-- Área reservada para a foto do jogador -->
+                <div class="photoPlaceholder">
+                    <img src="jogadores/16.jpeg" alt="Foto do jogador Ruan Bauer">
+                </div>
+                 <!-- Caixa de informações do jogador -->
+                <div class="infoBox">
+                        <!-- Imagem do jogador Ruan Bauer -->
+                    <span class="name">Ruan Bauer</span>
+                     <!-- Posição em que o jogador atua -->
+                    <span class="position">Atacante</span>
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="66">
+                <span class="number">66</span>
+                <div class="photoPlaceholder">
+                    <img src="jogadores/66.jpeg" alt="Foto do jogador Natan Correa">
+                </div>
+                <div class="infoBox">
+                    <span class="name">Natan Correa</span>
+                    <span class="position">Zagueiro</span>
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="7">
+                <span class="number">7</span>
+                <div class="photoPlaceholder">
+                    <img src="jogadores/7.jpeg" alt="Foto do jogador Cristiano Ronaldo">
+                </div>
+                <div class="infoBox">
+                    <span class="name">Cristiano Ronaldo</span>
+                    <span class="position">Atacante</span>
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="10">
+                <span class="number">10</span>
+                <div class="photoPlaceholder">
+                    <img src="jogadores/10.jpeg" alt="Foto do jogador Guilherme Cimino">
+                </div>
+                <div class="infoBox">
+                    <span class="name">Guilherme Cimino</span>
+                    <span class="position">Meio Campista</span>
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="13"> 
+                <span class="number">13</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/13.jpeg" alt="Foto do jogador Miguel Luizatto"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Miguel Luizatto</span> 
+                    <span class="position">Lateral Direito</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="9"> 
+                <span class="number">9</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/9.jpeg" alt="Foto do jogador Robert Lewandowski"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Robert Lewandowski</span> 
+                    <span class="position">Atacante</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="54"> 
+                <span class="number">54</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/54 - 2.jpeg" alt="Foto do jogador Cleber Baiano"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Cleber Baiano</span> 
+                    <span class="position">Lateral Esquerdo</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="77"> 
+                <span class="number">77</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/77.jpeg" alt="Foto do jogador Dudu"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Eduardo Pereira Rodrigues</span> 
+                    <span class="position">Meio Campista</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="69"> 
+                <span class="number">69</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/69 - 2.jpeg" alt="Foto do jogador Diego"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Diego</span> 
+                    <span class="position">Meio Campista</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="5"> 
+                <span class="number">5</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/5 - 2.jpeg" alt="Foto do jogador Matheus Oliveira"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Matheus Oliveira</span> 
+                    <span class="position">Meio Campista</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="30"> 
+                <span class="number">30</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/30.jpeg" alt="Foto do Gabriel Cerejo"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Gabriel Cerejo</span> 
+                    <span class="position">Zagueiro</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="1"> 
+                <span class="number">1</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/1.jpeg" alt="Foto do jogador Marcos"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Marcos</span> 
+                    <span class="position">Goleiro</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="32"> 
+                <span class="number">32</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/32.jpeg" alt="Foto do jogador Caio Goiaba"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Caio Goiaba</span> 
+                    <span class="position">Lateral Esquerdo</span> 
+                </div>
+            </div>
+            
+        <div class="playerCard" data-player-id="32"> 
+                <span class="number">11</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/11.jpeg" alt="Foto do jogador Abdallah habib"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Abdallah habib</span> 
+                    <span class="position">Atacante</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="24"> 
+                <span class="number">24</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/24 .jpeg" alt="Foto do jogador Lucas católico"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Lucas católico</span> 
+                    <span class="position">Lateral Direito</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="88"> 
+                <span class="number">88</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/88.jpeg" alt="Foto do jogador Erling Haaland"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Erling Haaland</span> 
+                    <span class="position">Atacante</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="93"> 
+                <span class="number">93</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/93.jpeg" alt="Foto do jogador Sergio Ramos"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Sergio Ramos</span> 
+                    <span class="position">Zagueiro</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="99"> 
+                <span class="number">99</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/99.jpeg" alt="Foto do jogador Kylian Mbappé"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Kylian Mbappé</span> 
+                    <span class="position">Atacante</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="4"> 
+                <span class="number">4</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/4.jpeg" alt="Foto do jogador Virgil van Dijk"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Virgil van Dijk</span> 
+                    <span class="position">Zagueiro</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="20"> 
+                <span class="number">20</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/20.jpeg" alt="Foto do jogador Luka Modrić"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Luka Modrić</span> 
+                    <span class="position">Meio Campista</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="2"> 
+                <span class="number">2</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/2.jpeg" alt="Foto do jogador Markus"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Markus</span> 
+                    <span class="position">Goleiro</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="8"> 
+                <span class="number">8</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/8.jpeg" alt="Foto do jogador Andreas Pereira"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Andreas Pereira</span> 
+                    <span class="position">Meio Campista</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="90"> 
+                <span class="number">90</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/90.jpeg" alt="Foto do jogador Giorgian De Arrascaeta"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Giorgian De Arrascaeta</span> 
+                    <span class="position">Meio Campista</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="42"> 
+                <span class="number">42</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/42.jpeg" alt="Foto do jogador José Manuel Alberto López"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">José López</span> 
+                    <span class="position">Atacante</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="80"> 
+                <span class="number">80</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/80.png" alt="Foto do jogador Lionel Andrés Messi"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Lionel Messi</span> 
+                    <span class="position">Atacante</span> 
+                </div>
+            </div>
+
+            <div class="playerCard" data-player-id="22"> 
+                <span class="number">22</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/22.png" alt="Foto do jogador Neymar Júnior"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Neymar Júnior</span> 
+                    <span class="position">Meio Campista</span> 
+                </div>
+            </div>
+            
+            <div class="playerCard" data-player-id="15"> 
+                <span class="number">15</span> 
+                <div class="photoPlaceholder">
+                    <img src="jogadores/15.png" alt="Foto do jogador Thiago Silva"> 
+                </div>
+                <div class="infoBox">
+                    <span class="name">Thiago Silva</span> 
+                    <span class="position">Zagueiro</span> 
+                </div>
+            </div>
+
+        </section>
+                
+            
+            </div>
+        </section>
+
+        <!-- Ícone de acessibilidade fixado na tela -->
+        <div class="accessibility-icon">
+            <!-- Símbolo Unicode ♿ (representa acessibilidade) -->
+            &#9855;
+        </div>
+        <!-- Fim do conteúdo principal da página -->
+    </main>
+
+    <!-- Início do rodapé principal do site -->
+    <footer class="mainFooter">
+        <!-- Container que agrupa todo o conteúdo do rodapé -->
+        <div class="footerContent">
+            <!-- Área esquerda: direitos autorais -->
+            <div class="footerLeft">
+                <!-- Texto com o ano e aviso de direitos reservados -->
+                <p>&copy; 2025 H4B F.C Todos os direitos reservados.</p>
+            </div>
+             <!-- Área central: logo do time (versão branca para fundo escuro) -->
+            <div class="footerCenter">
+                <img src="time/logo boto branco.png" alt="Logo Golfinho" class="footerLogoImg">
+            </div>
+            
+             <!-- Navegação do rodapé com links úteis -->
+            <nav class="footerNav">
+                  <!-- Link para a política de privacidade -->
+                <a href="#">Política de Privacidade</a>
+                <!-- Separador visual entre os links -->
+                <span class="separator">|</span>
+                  <!-- Link para os termos de uso -->
+                <a href="#">Termos de Uso</a>
+                <!-- Separador visual -->
+                <span class="separator">|</span>
+                <!-- Link para a página de contato -->
+                <a href="#">Contato</a>
+            </nav>
+            
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
