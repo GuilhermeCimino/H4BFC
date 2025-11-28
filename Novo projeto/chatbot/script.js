@@ -2,6 +2,33 @@ let aguardandoPagamento = false;
 let valorTotal = 0;
 let idCompra = "";
 
+// Função para animar entrada das mensagens
+function addMessage(from, text) {
+    let chat = document.getElementById("chat");
+
+    // Cria elemento
+    let p = document.createElement("p");
+    p.className = from === "Chatbot" ? "msg bot-msg" : "msg user-msg";
+
+    // Efeito de digitação
+    let i = 0;
+    function typeWriter() {
+        if (i < text.length) {
+            p.innerHTML = `<b>${from}:</b> ` + text.substring(0, i + 1);
+            i++;
+            setTimeout(typeWriter, 15); 
+        } else {
+            p.innerHTML = `<b>${from}:</b> ${text}`;
+        }
+    }
+
+    chat.appendChild(p);
+    typeWriter();
+
+    // Scroll automático
+    chat.scrollTop = chat.scrollHeight;
+}
+
 function enviar() {
     let msg = document.getElementById("msg").value.toLowerCase();
     document.getElementById("msg").value = "";
@@ -17,15 +44,8 @@ function enviar() {
     });
 }
 
-function addMessage(from, text) {
-    let chat = document.getElementById("chat");
-    chat.innerHTML += `<p><b>${from}:</b> ${text}</p>`;
-    chat.scrollTop = chat.scrollHeight;
-}
 
-
-// Gerar ID da Compra
-
+// ID da compra
 function gerarID() {
     let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     let id = "";
@@ -35,9 +55,7 @@ function gerarID() {
     return id;
 }
 
-
-// Gerar código PIX
-
+// Código PIX
 function gerarPix() {
     let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let codigo = "";
@@ -47,16 +65,11 @@ function gerarPix() {
     return codigo;
 }
 
-
-// Gerar boleto formatado
-
+// Boleto formatado
 function gerarBoletoFormatado() {
     let nums = "";
-    for (let i = 0; i < 44; i++) {
-        nums += Math.floor(Math.random() * 10);
-    }
+    for (let i = 0; i < 44; i++) nums += Math.floor(Math.random() * 10);
 
-    // Formato real de boleto: 5-5-5 / 6-5-6 / 5-6-5 / 1 / 11
     return (
         nums.slice(0, 5) + "." +
         nums.slice(5, 10) + " " +
@@ -70,16 +83,13 @@ function gerarBoletoFormatado() {
 }
 
 
-
-// Lógica do chatbot
-
+// Lógica principal
 function gerarResposta(msg) {
 
-    // Se estamos aguardando forma de pagamento
+    // Aguardando pagamento
     if (aguardandoPagamento) {
 
         if (msg.includes("pix")) {
-
             aguardandoPagamento = false;
             let codigoPix = gerarPix();
 
@@ -87,21 +97,20 @@ function gerarResposta(msg) {
                 "Você escolheu PIX!",
                 `ID do pedido: ${idCompra}`,
                 "Gerando código PIX...",
-                `Código PIX:`,
-                codigoPix,
+                "Código PIX:",
+                codigoPix
             ];
         }
 
         if (msg.includes("boleto")) {
-
             aguardandoPagamento = false;
             let boleto = gerarBoletoFormatado();
 
             return [
                 "Você escolheu boleto!",
                 `ID do pedido: ${idCompra}`,
-                "Gerando Boleto...",
-                `Boleto:`,
+                "Gerando boleto...",
+                "Linha digitável:",
                 boleto
             ];
         }
@@ -109,8 +118,7 @@ function gerarResposta(msg) {
         return ["Escolha inválida. Digite PIX ou BOLETO."];
     }
 
-
-    // Respostas básicas
+    // Respostas normais
     if (msg.includes("oi") || msg.includes("ola")) {
         return ["Olá! Como posso ajudar você a comprar ingressos?"];
     }
@@ -118,24 +126,22 @@ function gerarResposta(msg) {
     if (msg.includes("jogos") || msg.includes("partidas") || msg.includes("ingresso")) {
         return [
             "Temos apenas H4B x Flamengo disponível para compra!",
-            "Nossos próximos compromissos são: H4B vs Grêmio, H4B vs São Paulo e H4B vs Atlético-MG."
+            "Os próximos jogos são: H4B vs Grêmio, São Paulo e Atlético-MG."
         ];
     }
 
     if (msg.includes("flamengo")) {
         return [
-            "Ótima escolha! O jogo H4B x Flamengo custa R$55 por ingresso.",
-            "Quantos ingressos você quer?"
+            "Ótima escolha! O jogo custa R$55 por ingresso.",
+            "Quantos ingressos você deseja?"
         ];
     }
 
-    if (msg.includes("gremio")) return ["Venda indisponível por enquanto..."];
-    if (msg.includes("sao paulo") || msg.includes("são paulo")) return ["Venda indisponível por enquanto..."];
-    if (msg.includes("atletico")) return ["Venda indisponível por enquanto..."];
+    if (msg.includes("gremio") || msg.includes("são paulo") || msg.includes("sao paulo") || msg.includes("atletico")) {
+        return ["Venda indisponível por enquanto..."];
+    }
 
-
-    // Detecta quantidade + calcula preço
-
+    // Detecta número
     let numero = msg.match(/\d+/);
 
     if (numero) {
@@ -143,23 +149,22 @@ function gerarResposta(msg) {
         let preco = 55;
         valorTotal = qtd * preco;
 
-        idCompra = gerarID(); // cria ID único
-
+        idCompra = gerarID();
         aguardandoPagamento = true;
 
         return [
             `Você escolheu ${qtd} ingresso(s).`,
-            `Total: R$${valorTotal}.`,
+            `Total da compra: R$${valorTotal}.`,
             "Como deseja pagar? (PIX ou BOLETO)"
         ];
     }
 
-
+    // Padrão
     return ["Desculpe, não entendi. Pode tentar de outro jeito?"];
 }
 
 
-// ENTER para enviar
+// Enviar com ENTER
 document.getElementById("msg").addEventListener("keypress", function(e) {
     if (e.key === "Enter") enviar();
 });
