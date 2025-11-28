@@ -269,13 +269,30 @@ body {
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
+    background-color: var(--color-primary); /* Fundo Rosa */
+    color: var(--color-secondary); /* Símbolo Preto */
     padding: 10px;
     border-radius: 50%;
     font-size: 24px;
-    cursor: pointer;
+    
+    border: none; /* Remove a borda padrão feia do botão */
+    cursor: pointer; /* Garante que o cursor de clique apareça */
+    
+    /* OPCIONAL: Adiciona um efeito hover para indicar que é clicável */
+    transition: background-color 0.2s, box-shadow 0.2s; 
+    
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.accessibility-icon:hover {
+    background-color: #ff85c1; /* Um rosa um pouco mais claro */
+    box-shadow: 0 0 15px var(--color-primary); /* Brilho rosa maior */
+}
+
+/* NOVO: Efeito ao clicar */
+.accessibility-icon:active {
+    transform: translateY(-48%) scale(0.98); /* Move ligeiramente para simular um clique */
 }
 
 /* ---------------------------------- */
