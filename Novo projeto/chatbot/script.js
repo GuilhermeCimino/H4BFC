@@ -8,7 +8,7 @@ function addMessage(from, text) {
 
     // Cria elemento
     let p = document.createElement("p");
-    p.className = from === "Chatbot" ? "msg bot-msg" : "msg user-msg";
+    p.className = from === "Amazônio" ? "msg bot-msg" : "msg user-msg";
 
     // Efeito de digitação
     let i = 0;
@@ -26,7 +26,15 @@ function addMessage(from, text) {
     typeWriter();
 
     // Scroll automático
-    chat.scrollTop = chat.scrollHeight;
+    function scrollToBottom() {
+    const chat = document.getElementById("chat");
+    requestAnimationFrame(() => {
+        chat.scrollTop = chat.scrollHeight;
+    });
+}
+
+
+
 }
 
 function enviar() {
@@ -39,7 +47,7 @@ function enviar() {
 
     respostas.forEach((resposta, i) => {
         setTimeout(() => {
-            addMessage("Chatbot", resposta);
+            addMessage("Amazônio", resposta);
         }, i * 900);
     });
 }
@@ -139,6 +147,30 @@ function gerarResposta(msg) {
 
     if (msg.includes("gremio") || msg.includes("são paulo") || msg.includes("sao paulo") || msg.includes("atletico")) {
         return ["Venda indisponível por enquanto..."];
+    }
+
+    if (msg.includes("stadium") || msg.includes("estadio") || msg.includes("estádio")) {
+        return ["No ano de 2023 marcou o início de uma era, com a construção do nosso primeiro estádio Abdallah Habib Stadium, a paixão da torcida pulsando nas lindas arquibancadas. Uma jornada de glórias e superações."];
+    }
+
+    if (msg.includes("mascote") || msg.includes("amazonio") || msg.includes("amazônio") || msg.includes("apresente")|| msg.includes("voce")|| msg.includes("você")) {
+        return ["Eu sou o Amazônio, o mascote mais carismático e forte das águas! Sou um lendário boto-cor-de-rosa da Amazônia. Com um físico musculoso e uma expressão sempre confiante e amigável, eu visto as cores da vitória: preto e rosa vibrante. Sou um símbolo de astúcia, rapidez, e a alegria contagiante do esporte brasileiro. Ah, e não se engane com meu sorriso contagiante, também adoro uma boa travessura😈."];
+    }
+
+    if (msg.includes("titulo") || msg.includes("título")) {
+        return ["Com 5 Copas Libertadores e 5 Taças do Mundo, o H4B F.C. é uma lenda global. Soma-se a isso o domínio nacional, com 15 Brasileiros e um total de 30 títulos estaduais e 15 interestaduais, confirmando sua posição como o time mais vitorioso do Brasil."];
+    }
+
+    if (msg.includes("comissao") || msg.includes("tecnica") || msg.includes("comissão") || msg.includes("técnica")) {
+        return ["A base das vitórias do H4B F.C. está na sua Comissão Técnica de ponta, liderada pela energia e visão estratégica de Fabricio Bruto (Técnico). Ele é o arquiteto tático por trás dos títulos. O suporte crucial vem de Raquel Dos Anjos (Auxiliar Técnica), que garante a alta motivação e a coesão do elenco com sua excelente comunicação, e Isabella Jacques (Auxiliar Técnica), a especialista em análise de desempenho que oferece a vantagem tática vital. Juntos, este trio de elite assegura que o H4B F.C. mantenha sua hegemonia no futebol mundial."];
+    }
+
+    if (msg.includes("elenco") || msg.includes("jogadores")) {
+        return ["O Elenco Galáctico é a materialização da excelência. O ataque é um pesadelo: a letalidade de Cristiano Ronaldo, Lewandowski e a genialidade de nosso ídolo Abdallah Habib se juntam à explosão de Mbappé, Haaland., garantindo o poder de fogo em qualquer momento. O coração da equipe pulsa no meio-campo, onde a visão cirúrgica de Luka Modrić e a magia do nosso capitão Guilherme Cimino formam um motor insuperável, com a versatilidade de Andreas Pereira e Giorgian De Arrascaeta assegurando o domínio tático. A retaguarda é uma fortaleza, com a liderança intransigente de Sergio Ramos e a capacidade de antecipação de Natan Correa, protegida pela experiência segura dos irmãos goleiros Marcos e Markus. Este esquadrão veste a glória, o time que não joga para vencer, mas sim para consagrar a sua dinastia."];
+    }
+
+    if (msg.includes("idolo") || msg.includes("ídolo") || msg.includes("abdallah") || msg.includes("habib")) {
+        return ["Abdallah Habib é a alma imortal e o maior ídolo da história do H4B F.C. Presente desde as raízes do clube, ele não apenas brilhou por sua técnica, mas forjou o espírito vencedor do time. Como capitão e líder moral, ele é a personificação da paixão e do comprometimento inabalável que guiou o H4B F.C. à glória mundial. Em homenagem à sua trajetória, o nosso estádio leva o seu nome, um templo de glórias batizado em honra ao eterno ícone, nosso rei."];
     }
 
     // Detecta número
