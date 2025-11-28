@@ -1,6 +1,6 @@
-let aguardandoPagamento = false;  // controla se estamos esperando forma de pagamento
-let valorTotal = 0;               // guarda valor final após cálculo
-
+let aguardandoPagamento = false;
+let valorTotal = 0;
+let idCompra = "";
 
 function enviar() {
     let msg = document.getElementById("msg").value.toLowerCase();
@@ -12,11 +12,10 @@ function enviar() {
 
     respostas.forEach((resposta, i) => {
         setTimeout(() => {
-            addMessage("Amazônio", resposta);
+            addMessage("Chatbot", resposta);
         }, i * 900);
     });
 }
-
 
 function addMessage(from, text) {
     let chat = document.getElementById("chat");
@@ -25,7 +24,19 @@ function addMessage(from, text) {
 }
 
 
-// Função para gerar PIX e BOLETO
+// Gerar ID da Compra
+
+function gerarID() {
+    let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let id = "";
+    for (let i = 0; i < 12; i++) {
+        id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return id;
+}
+
+
+// Gerar código PIX
 
 function gerarPix() {
     let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -36,45 +47,66 @@ function gerarPix() {
     return codigo;
 }
 
-function gerarBoleto() {
-    let codigo = "";
+
+// Gerar boleto formatado
+
+function gerarBoletoFormatado() {
+    let nums = "";
     for (let i = 0; i < 44; i++) {
-        codigo += Math.floor(Math.random() * 10); // apenas números
+        nums += Math.floor(Math.random() * 10);
     }
-    return codigo;
+
+    // Formato real de boleto: 5-5-5 / 6-5-6 / 5-6-5 / 1 / 11
+    return (
+        nums.slice(0, 5) + "." +
+        nums.slice(5, 10) + " " +
+        nums.slice(10, 15) + "." +
+        nums.slice(15, 21) + " " +
+        nums.slice(21, 26) + "." +
+        nums.slice(26, 32) + " " +
+        nums.slice(32, 33) + " " +
+        nums.slice(33)
+    );
 }
 
 
-// Função principal de respostas
+
+// Lógica do chatbot
 
 function gerarResposta(msg) {
 
-    // Se estamos esperando forma de pagamento → processa aqui
+    // Se estamos aguardando forma de pagamento
     if (aguardandoPagamento) {
 
         if (msg.includes("pix")) {
+
             aguardandoPagamento = false;
+            let codigoPix = gerarPix();
 
             return [
                 "Você escolheu PIX!",
-                "Gerando código...",
+                `ID do pedido: ${idCompra}`,
+                "Gerando código PIX...",
                 `Código PIX:`,
-                gerarPix()
+                codigoPix,
             ];
         }
 
         if (msg.includes("boleto")) {
+
             aguardandoPagamento = false;
+            let boleto = gerarBoletoFormatado();
 
             return [
                 "Você escolheu boleto!",
-                "Gerando boleto...",
+                `ID do pedido: ${idCompra}`,
+                "Gerando Boleto...",
                 `Boleto:`,
-                gerarBoleto()
+                boleto
             ];
         }
 
-        return ["Escolha inválida. Digite: PIX ou BOLETO."];
+        return ["Escolha inválida. Digite PIX ou BOLETO."];
     }
 
 
@@ -86,7 +118,7 @@ function gerarResposta(msg) {
     if (msg.includes("jogos") || msg.includes("partidas") || msg.includes("ingresso")) {
         return [
             "Temos apenas H4B x Flamengo disponível para compra!",
-            "Nossos próximos compromissos para este mês são: H4B vs Grêmio, H4B vs São Paulo e H4B vs Atlético-MG."
+            "Nossos próximos compromissos são: H4B vs Grêmio, H4B vs São Paulo e H4B vs Atlético-MG."
         ];
     }
 
@@ -97,26 +129,28 @@ function gerarResposta(msg) {
         ];
     }
 
-    if (msg.includes("gremio")) return ["Venda de ingressos indisponível por enquanto..."];
-    if (msg.includes("sao paulo") || msg.includes("são paulo")) return ["Venda de ingressos indisponível por enquanto..."];
-    if (msg.includes("atletico")) return ["Venda de ingressos indisponível por enquanto..."];
+    if (msg.includes("gremio")) return ["Venda indisponível por enquanto..."];
+    if (msg.includes("sao paulo") || msg.includes("são paulo")) return ["Venda indisponível por enquanto..."];
+    if (msg.includes("atletico")) return ["Venda indisponível por enquanto..."];
 
 
-    // Detecta quantidade e calcula preço
-   
+    // Detecta quantidade + calcula preço
+
     let numero = msg.match(/\d+/);
 
     if (numero) {
         let qtd = parseInt(numero[0]);
         let preco = 55;
-        valorTotal = qtd * preco;    // salva valor
+        valorTotal = qtd * preco;
 
-        aguardandoPagamento = true;  // espera forma de pagamento
+        idCompra = gerarID(); // cria ID único
+
+        aguardandoPagamento = true;
 
         return [
             `Você escolheu ${qtd} ingresso(s).`,
-            `O valor total fica: R$${valorTotal}.`,
-            "Qual forma de pagamento você deseja? (PIX ou BOLETO)"
+            `Total: R$${valorTotal}.`,
+            "Como deseja pagar? (PIX ou BOLETO)"
         ];
     }
 
@@ -125,8 +159,7 @@ function gerarResposta(msg) {
 }
 
 
-
-// tecla Enter envia
+// ENTER para enviar
 document.getElementById("msg").addEventListener("keypress", function(e) {
     if (e.key === "Enter") enviar();
 });
