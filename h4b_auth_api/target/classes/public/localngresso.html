@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingressos - H4B VS Flamengo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+          <!--- Cabeçalho --->
+            <header class="header">
+                  <!-- Área do logotipo -->
+                <div class="logoArea">
+                     <!-- Container do logotipo -->
+                    <div class="logoContainer">
+                          <!-- Imagem do logotipo do time -->
+                        <img src="time/logo.png" alt="Logo H4B F.C." class="logoImg">
+                         <!-- Texto abaixo do logotipo -->
+                        <span class="logoTextBottom">H4B F.C</span>
+                    </div>
+                </div>
+                 <!-- Navegação superior -->
+                <nav class="topNav">
+                      <!-- Link para a página de login -->
+                    <a href="login.html">LOGIN</a> 
+                    <!-- Caixa de chamada para se tornar sócio -->
+                    <div class="socioBox">
+                        SEJA <br> <span class="destaque">SÓCIO!</span>
+                    </div>
+                </nav>
+            </header>
+
+        <!--- texto principal --->
+        <main class="mainContent">
+              <!-- Seção com informações sobre a partida -->
+            <div class="matchInfo">
+                 <!-- Título da página -->
+                <h1 class="pageTitle">Futebol Profissional</h1>
+            </div> <!-- Fim da div match-info -->
+
+
+
+
+        <!-- Barra de progresso -->
+           <div class="progress-container">
+             <!-- Etapa 1 (ativa) -->
+            <div class="progress-step active">1</div>
+             <!-- Linha de conexão entre etapas (ativa) -->
+            <div class="progress-line active"></div>
+            <!-- Etapa 2 -->
+            <div class="progress-step">2</div>
+             <!-- Linha de conexão entre etapas -->
+            <div class="progress-line"></div>
+             <!-- Etapa 3 -->
+            <div class="progress-step">3</div>
+            <!-- Linha de conexão entre etapas -->
+            <div class="progress-line"></div>
+            <!-- Linha de conexão entre etapas -->
+            <div class="progress-step">4</div>
+        </div> <!-- Fim da barra de progresso -->
+
+                    
+
+       <div class="identificadorJogo">
+
+
+            <!-- Lado esquerdo: informações do jogo -->
+            <div class="infoTimeIngresso">
+                <!-- Título com o nome da partida (campo de texto somente leitura) -->
+                <h2> <input type="text" id="partida" value="H4B F.C x Flamengo" readonly></h2>
+                 <!-- Data e hora do jogo (campos somente leitura) -->
+                <p><strong>Data:</strong> 
+                     <input type="date" id="dataJogo" value="2025-11-15" readonly> 
+                     <input type="time" id="horaJogo" value="19:00" readonly>
+                </p>
+                <!-- Local do jogo (campo de texto somente leitura) -->
+                <p><strong>Local:</strong>  
+                    <input type="text" id="local" value="Estádio H4B Arena" readonly>
+                </p>
+                 <!-- Seleção do setor do estádio -->
+                <p><strong>Setor:</strong>
+                <select id="setor">
+                    <option value="Arquibancada Norte">Arquibancada Norte</option>
+                    <option value="Leste (VIP)">Leste (VIP)</option>
+                </select>
+                 </p>
+
+                <!-- Preço do ingresso (campo numérico somente leitura) -->
+                <p><strong>Preço do ingresso:</strong> 
+                R$ <input type="number" id="preco" value="50" min="0" step="0.01" readonly>
+                </p>
+                 <!-- Área para exibir benefícios do setor VIP -->
+                 <p id="beneficiosVIP" style="color: purple; font-weight: bold;"></p>
+
+                
+                   <!-- Controle de quantidade de ingressos  quantidade-ingressos -->
+                 <div class="quantidadeIngressos">
+                    <span>Quantidade:</span>
+                     <!-- Botão para diminuir a quantidade  controle-quantidade -->
+                    <div class="controleQuantidade">
+                        <button class="menos">-</button>
+                         <!-- Número atual de ingressos -->
+                        <span class="numero">1</span>
+                        <!-- Botão para aumentar a quantidade -->
+                        <button class="mais">+</button>
+                        <!-- Botão Ver Total (fica logo abaixo da quantidade) -->
+                        <button id="verTotal" class="verTotall">Ver Total</button>
+                    </div>
+                </div>  
+            </div> <!-- Fim da div infoTimeIngresso -->
+
+
+
+
+  <!-- Etapa 2: Mapa do estádio (fica escondido até clicar em "Continuar") -->
+  <!-- Etapa 2: mapa do estádio (inicialmente escondido) etapa-mapa -->
+  <div class="etapaMapa" style="display:none;">
+    <!-- Título da seção -->
+       <h2>Escolha sua poltrona</h2>
+            <!-- Mapa do estádio com os setores e assentos mapa-estadio -->
+            <div class="mapaEstadio">
+                <!-- Setor Norte -->
+                <div class="setor norte">
+                <h3>Arquibancada Norte</h3>
+                <div class="assentos">
+                    <button>A1</button>
+                    <button>A2</button>
+                    <button>A3</button>
+                    <button>A4</button>
+                    <button>A5</button>
+                </div>
+                </div>
+                <!-- Setor Oeste -->
+                <div class="setor oeste">
+                <h3>Oeste</h3>
+                <div class="assentos">
+                    <button>B1</button>
+                    <button>B2</button>
+                    <button>B3</button>
+                </div>
+                </div>
+                  <!-- Representação do campo -->
+                <div class="campo">🏟️ CAMPO</div>
+                  <!-- Setor Leste (VIP / Sócios) -->
+                <div class="setor leste">
+                <h3>Leste (Área VIP / Sócios)</h3>
+                <div class="assentos">
+                    <button class="vip">V1</button>
+                    <button class="vip">V2</button>
+                    <button class="vip">V3</button>
+                </div>
+                </div>
+                 <!-- Setor Sul -->
+                <div class="setor sul">
+                <h3>Arquibancada Sul</h3>
+                <div class="assentos">
+                    <button>C1</button>
+                    <button>C2</button>
+                    <button>C3</button>
+                    <button>C4</button>
+                    <button>C5</button>
+                </div>
+                </div>
+            </div> <!-- Fim do mapa do estádio -->
+         <!-- Botão para confirmar o assento escolhido confirmar-assento -->
+      <button class="confirmarAssento">Confirmar Assento</button>
+    </div> <!-- Fim da etapa do mapa -->
+
+
+    <!-- Etapa 3: Pagamento (etapa-pagamento) -->
+    <div class="etapaDoPagamento" style="display:none;">
+        <!-- Título da seção de pagamento -->
+        <h2>Pagamento</h2>
+        <!-- Resumo dos valores da compra -->
+        <div class="resumoDePagamento"> <!-- resumo-pagamento -->
+          <!-- Valor dos ingressos sem taxas -->
+          <p><strong>Sub-total:</strong> <span id="subtotalPagamento">R$ 0,00</span></p>
+             <!-- Taxa adicional pela compra online -->
+             <p><strong>Taxa de conveniência:</strong> R$ 5,00</p>
+             <!-- Valor total da compra -->
+              <p><strong>Total:</strong> <span id="totalPagamento">R$ 0,00</span></p>
+             </div>
+
+              <!-- Área exclusiva para sócios (aparece apenas se for sócio) --> <!-- Só aparece se for sócio -->
+              <div class="socio-area" id="socioAreaPagamento" style="display:none;">
+
+              <!-- Checkbox indicando status de sócio (desabilitado para edição) -->
+              <input type="checkbox" id="socioPagamentoPagamento" disabled>
+
+              <label for="socioPagamentoPagamento">Sou sócio do clube (10% de desconto)</label>
+              </div>
+              <!-- Linha divisória -->
+              <hr>
+
+              <!-- Escolha da forma de pagamento -->
+              <h3>Forma de Pagamento</h3>
+              <div class="formasDePagamento"> <!-- formas-pagamento -->
+
+              <!-- Opção de pagamento via PIX -->
+              <label>
+              <input type="radio" name="tipoPagamento" value="pix" checked>
+              PIX (confirmação imediata)
+              </label>
+
+              <!-- Opção de pagamento via boleto bancário -->
+              <label>
+                <input type="radio" name="tipoPagamento" value="boleto">
+                Boleto bancário (até 2 dias úteis)
+              </label>
+            </div>
+        <!-- Botão para finalizar a compra finalizar-compra -->
+        <button class="finalizarCompra">Finalizar Compra</button>
+    </div> <!-- Fim da etapa de pagamento -->
+
+
+
+
+
+
+    <!-- Etapa 4: Resumo Final -->
+    <div class="etapaResumoFinal" style="display:none;">
+        <!-- Título da seção -->
+        <h2>Resumo Final da Compra</h2>
+            <!-- Área com os detalhes da compra -->
+            <div class="resumoDetalhado">
+                <!-- Informações do jogo selecionado resumo-detalhado -->
+                <p><strong>Jogo:</strong> <span id="resumoPartida"></span></p>
+                <p><strong>Data:</strong> <span id="resumoData"></span></p>
+                <p><strong>Horário:</strong> <span id="resumoHora"></span></p>
+                <p><strong>Local:</strong> <span id="resumoLocal"></span></p>
+                <p><strong>Setor:</strong> <span id="resumoSetor"></span></p>
+                <p><strong>Assentos:</strong> <span id="resumoAssentos"></span></p>
+                <p><strong>Quantidade:</strong> <span id="resumoQuantidade"></span></p>
+                            
+                 <!-- Valores financeiros da compra -->
+                <p><strong>Subtotal:</strong> <span id="resumoSubtotal"></span></p>
+                <p><strong>Taxa de Conveniência:</strong> R$ 5,00</p>
+                <p><strong>Desconto de Sócio:</strong> <span id="resumoDesconto"></span></p>
+                            
+                <!-- Forma de pagamento escolhida -->
+                <p><strong>Forma de Pagamento:</strong> <span id="resumoPagamento"></span></p>
+                            
+            <!-- Valor total final da compra -->
+            <h3>Total Final: <span id="resumoTotal"></span></h3>
+        </div>
+
+        <!-- Botão para reiniciar o processo de compra -->
+        <button class="btn-voltar-inicio">Voltar ao Início</button>
+    </div> <!-- Fim da etapa de resumo final -->
+
+
+
+
+            <!-- Lado direito: resumo e opções -->
+            <div class="nomeTimeIngressoTotal" >
+                <!-- Título da seção -->
+                <h3>Resumo do Pedido</h3>
+
+                <!-- Exibição do subtotal dos ingressos -->
+                <div class="resumo-item">
+                    <span>Sub-total:</span>
+                    <span id="subtotal">R$ 0,00</span>
+                </div>
+
+                 <!-- Exibição da taxa de conveniência -->
+                <div class="resumo-item">
+                    <span>Taxa de conveniência:</span>
+                    <span id="taxa">R$ 5,00</span>
+                </div>
+
+                 <!-- Exibição do valor total da compra -->
+                <div class="resumo-total">
+                    <strong>Total:</strong>
+                    <strong id="total">R$ 0,00</strong>
+                </div>
+
+                <!-- Opção para aplicar desconto de sócio -->
+                <div class="socio-check">
+                    <input type="checkbox" id="socio">
+                    <label for="socio">Sou sócio do clube (10% de desconto)</label>
+                </div>
+
+                <!-- Botões de ação: comprar mais ou continuar -->
+                <div class="botoes-compra">
+                    <button class="comprar-mais">Comprar mais</button>
+                    <button class="continuar">Continuar</button>
+                </div>
+            </div> <!-- Fim da seção de resumo e opções -->
+
+
+        </div>
+
+
+
+      <!--- Rodapé --->
+          <footer class="mainFooter">
+        <div class="footerContent">
+            
+            <div class="footerLeft">
+                <p>&copy; 2025 H4B F.C Todos os direitos reservados.</p>
+            </div>
+            
+            <div class="footerCenter">
+                <img src="time/logo boto branco.png" alt="Logo Golfinho" class="footerLogoImg">
+            </div>
+            
+            <nav class="footerNav">
+                <a href="#">Política de Privacidade</a>
+                <span class="separator">|</span>
+                <a href="#">Termos de Uso</a>
+                <span class="separator">|</span>
+                <a href="#">Contato</a>
+            </nav>
+            
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

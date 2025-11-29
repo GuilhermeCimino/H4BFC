@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot H4B F.C.</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header-small">
+    <div class="header-content-wrapper">
+        
+        <a href="../index.html" class="back-button">
+            <span class="arrow-icon">←</span> Voltar
+        </a>
+
+        <div class="logo-container-small">
+            <img src="../time/logo.png" alt="Logo do Time" class="header-logo">
+            <span class="logo-text">H4B F.C. Suporte</span>
+        </div>
+        
+        <div class="placeholder"></div>
+
+    </div>
+</header>
+
+<div class="chat-wrapper">
+    <div class="chat-container">
+        
+        <div class="mascot-info">
+            <img src="../time/mascoteFalando.png" alt="Mascote Golfinho" class="mascot-avatar">
+            <span class="mascot-name">Boto Amazônio</span>
+        </div>
+        
+        <div id="chat" class="message-area">
+            <div class="message bot-message initial-message fade-in">
+                Olá! Eu sou o Amazônio. Como posso te ajudar?
+            </div>
+        </div>
+    
+        <div class="input-area">
+            <input id="msg" placeholder="Digite sua mensagem aqui..." autocomplete="off">
+            <button onclick="enviar()">Enviar</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+/* Reset básico de margens e fontes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container do login */
+.h4b-login-container {
+    background-color: #333;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Logo do time */
+.h4b-logo img {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+/* Caixa de login */
+.h4b-login-box h2 {
+    color: #f2f2f2;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.h4b-input-group {
+    margin-bottom: 20px;
+}
+
+.h4b-input-group label {
+    color: #f2f2f2;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.h4b-input-group input {
+    width: 100%;
+    padding: 10px;
+    background-color: #444;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #f2f2f2;
+    font-size: 16px;
+}
+
+.h4b-input-group input:focus {
+    border-color: #f2f2f2;
+    outline: none;
+}
+
+/* Botão de login */
+.h4b-login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #FF69B4;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.h4b-login-btn:hover {
+    background-color: #ff69b494;
+}

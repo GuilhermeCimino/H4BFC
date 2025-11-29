@@ -1,0 +1,430 @@
+/*
+ * --------------------------------
+ * Variáveis de Cores (Opcional, mas útil)
+ * --------------------------------
+ */
+:root {
+    --bg-color: #121212; /* Fundo principal escuro */
+    --card-color: #282828; /* Cor do card central/wrapper */
+    --text-color: #f0f0f0; /* Cor do texto claro */
+    --accent-color: #ff69b4; /* Rosa/Pink vibrante (baseado no botão 'Entrar') */
+    --input-bg-color: #444444; /* Fundo dos inputs/áreas de mensagem */
+    --bot-bubble-color: #3e3e3e; /* Cor da bolha de mensagem do bot */
+    --user-bubble-color: #007bff; /* Azul para bolhas do usuário (pode ser ajustado) */
+}
+
+/*
+ * --------------------------------
+ * Estilos Globais e Fundo
+ * --------------------------------
+ */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; /* Garante que o fundo cubra toda a altura */
+}
+
+/*
+ * --------------------------------
+ * Cabeçalho
+ * --------------------------------
+ */
+.header-small {
+    width: 100%;
+    background-color: var(--card-color);
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.logo-container-small {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo-text {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/*
+ * --------------------------------
+ * Wrapper Principal do Chat
+ * --------------------------------
+ */
+.chat-wrapper {
+    flex-grow: 1; /* Permite que o wrapper ocupe o espaço restante */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centraliza o container na tela */
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 600px; /* Largura máxima para o card do chat */
+    height: 80vh; /* Altura do container do chat */
+    min-height: 400px;
+    background-color: var(--card-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/*
+ * --------------------------------
+ * Informações do Mascote
+ * --------------------------------
+ */
+.mascot-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #3e3e3e;
+}
+
+.mascot-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Se a imagem não for redonda, isso a deixará */
+    margin-right: 10px;
+    object-fit: cover;
+    /* Adicione uma borda se quiser destaque, por exemplo: border: 2px solid var(--accent-color); */
+}
+
+.mascot-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--accent-color);
+}
+
+/*
+ * --------------------------------
+ * Área de Mensagens
+ * --------------------------------
+ */
+.message-area {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px; /* Espaço para a barra de rolagem */
+    margin-bottom: 15px;
+    
+    /* Estilo da barra de rolagem para navegadores baseados em WebKit */
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--card-color);
+}
+
+.message-area::-webkit-scrollbar {
+    width: 8px;
+}
+
+.message-area::-webkit-scrollbar-track {
+    background: var(--card-color);
+    border-radius: 10px;
+}
+
+.message-area::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 10px;
+    border: 2px solid var(--card-color);
+}
+
+.message {
+    display: inline-block;
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.bot-message {
+    background-color: var(--bot-bubble-color);
+    color: var(--text-color);
+    align-self: flex-start;
+    border-top-left-radius: 0; /* Corner afiado para o lado do bot */
+    margin-right: auto;
+}
+
+.user-message { /* Necessita de classe 'user-message' no JS para funcionar */
+    background-color: var(--user-bubble-color);
+    color: white;
+    align-self: flex-end;
+    border-top-right-radius: 0; /* Corner afiado para o lado do usuário */
+    margin-left: auto;
+}
+
+.initial-message {
+    /* Estilo para a mensagem inicial */
+    margin-top: 5px;
+}
+
+/*
+ * --------------------------------
+ * Área de Input
+ * --------------------------------
+ */
+.input-area {
+    display: flex;
+    gap: 10px;
+}
+
+.input-area input[type="text"], #msg {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 25px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    font-size: 1em;
+    outline: none;
+    transition: box-shadow 0.2s;
+}
+
+.input-area input[type="text"]:focus, #msg:focus {
+    box-shadow: 0 0 0 2px var(--accent-color);
+}
+
+.input-area button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    background-color: var(--accent-color); /* Cor do botão 'Entrar' */
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.input-area button:hover {
+    background-color: #e652a2; /* Um pouco mais escuro ao passar o mouse */
+}
+
+.input-area button:active {
+    transform: scale(0.98);
+}
+
+/* AJUSTE ESSA REGRA */
+.header-small {
+    width: 100%;
+    background-color: var(--card-color);
+    padding: 10px 0; /* Espaçamento interno em cima e embaixo */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    /* Removemos o text-align: center; daqui se ele existir */
+}
+
+/* AJUSTE ESSA REGRA */
+.logo-container-small {
+    /* **CRUCIAL**: Define o layout como flexível */
+    display: flex;
+    /* Alinha o logo e o texto verticalmente (no meio) */
+    align-items: center; 
+    /* Centraliza o conjunto de logo e texto horizontalmente */
+    justify-content: center; 
+    
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+
+/* AJUSTE ESSA REGRA */
+.header-logo {
+    /* Estilo para a imagem do logo */
+    height: 35px; /* Novo: Define uma altura pequena e controlada (ex: 35px) */
+    width: auto; /* Novo: Mantém a proporção da imagem */
+    margin-right: 10px; /* Espaço entre o logo e o texto */
+}
+
+/* Opcional: Ajuste o texto se precisar */
+.logo-text {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/*
+ * --------------------------------
+ * Responsividade Básica
+ * --------------------------------
+ */
+@media (max-width: 650px) {
+    .chat-container {
+        width: 100%;
+        margin: 0;
+        height: 90vh;
+        border-radius: 0;
+    }
+    
+    .chat-wrapper {
+        padding: 0;
+    }
+}
+
+/*
+ * --------------------------------
+ * Estilos para o Wrapper do Cabeçalho e Botão de Voltar
+ * --------------------------------
+ */
+
+/* NOVO: Wrapper principal para alinhar logo/texto (centro) e botão (esquerda) */
+.header-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribui o espaço entre os itens */
+    max-width: 900px; /* Mantém a largura máxima do seu layout */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* NOVO: Estilo para o botão de voltar */
+.back-button {
+    text-decoration: none; /* Remove sublinhado do link */
+    color: var(--text-color); /* Usa a cor do texto padrão */
+    font-size: 1em;
+    padding: 8px 12px;
+    border: 1px solid #444; /* Borda discreta */
+    border-radius: 5px;
+    background-color: transparent; /* Fundo transparente */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.back-button:hover {
+    background-color: #333; /* Fundo levemente mais escuro ao passar o mouse */
+    color: var(--accent-color); /* Muda a cor para o pink do time */
+    border-color: var(--accent-color);
+}
+
+.arrow-icon {
+    font-size: 1.2em;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+/* Ajuste a centralização do logo/texto */
+.logo-container-small {
+    /* Garante que o logo e o texto fiquem na mesma linha (mantido) */
+    display: flex;
+    align-items: center; 
+    /* Remove a centralização 'justify-content: center;' daqui 
+       e deixamos o .header-content-wrapper fazer o trabalho */
+    /* Remova a linha 'justify-content: center;' se ela estiver aqui */
+    padding: 0; /* Remove padding duplicado se existir */
+}
+
+/* NOVO: O placeholder é necessário para manter o logo/texto perfeitamente centralizado */
+.placeholder {
+    width: 90px; /* Use a mesma largura que o botão de voltar para equilibrar o layout */
+    height: 1px;
+}
+
+/* Ajuste a mídia query para dispositivos móveis */
+@media (max-width: 650px) {
+    .back-button {
+        padding: 5px 8px;
+        font-size: 0.9em;
+    }
+    .placeholder {
+        width: 70px; /* Reduz o placeholder no mobile */
+    }
+}
+/* -------------------------------
+   ANIMAÇÃO DE APARIÇÃO DAS MENSAGENS
+---------------------------------- */
+
+.msg {
+    opacity: 0;
+    transform: translateY(8px);
+    animation: fadeUp 0.35s ease forwards;
+}
+
+/* Bot */
+.bot-msg {
+    background-color: var(--bot-bubble-color);
+    color: var(--text-color);
+    padding: 10px 15px;
+    border-radius: 15px;
+    border-top-left-radius: 0;
+    margin-bottom: 10px;
+    max-width: 80%;
+    align-self: flex-start;
+    word-wrap: break-word;
+}
+
+/* Usuário */
+.user-msg {
+    background-color: #e652a2;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 15px;
+    border-top-right-radius: 0;
+    margin-bottom: 10px;
+    max-width: 80%;
+    align-self: flex-end;
+    word-wrap: break-word;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.typing-indicator {
+    width: 50px;
+    height: 20px;
+    background-color: var(--bot-bubble-color);
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+    animation: fadeUp 0.3s ease forwards;
+}
+
+.typing-indicator span {
+    width: 6px;
+    height: 6px;
+    background: var(--text-color);
+    border-radius: 50%;
+    animation: blink 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+    0% { opacity: 0.2; }
+    20% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+
