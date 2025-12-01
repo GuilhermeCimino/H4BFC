@@ -29,6 +29,17 @@ public class UserRepository {
         return null;
     }
 
+    public void updatePassword(int id, String password) throws Exception {
+    String sql = "UPDATE users SET password = ? WHERE id = ?";
+    try (Connection conn = SQLiteConnection.connect();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, password);
+        stmt.setInt(2, id);
+        stmt.executeUpdate();
+    }
+}
+
+
     public void updateToken(int id, String token) throws Exception {
         String sql = "UPDATE users SET token = ? WHERE id = ?";
         try (Connection conn = SQLiteConnection.connect();

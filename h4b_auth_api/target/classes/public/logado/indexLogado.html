@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elenco - H4B Redesign</title>
     <link rel="stylesheet" href="../style.css">
+    <script src="scriptLogado/scriptLogado.js" defer></script> 
+    <script src="scriptLogado/scriptBotao.js" defer></script> 
+
 </head>
 <body>
 
@@ -20,15 +23,26 @@
         </div>
         
         <nav class="topNav">
+           <h1 class="bemVindo"><span id="nomeUsuario">Usuário</span></h1>
+    
+            <div class="usuarioWrapper">
+                <img src="fotologado/adm.webp" class="usuarioIcon" alt="adm" id="usuarioBtn"> 
+                <div class="dropdownMenu" id="dropdownMenu">
+                    <a href="#" id="logoutBtn">Sair</a>
+                </div>
+            </div>
             
-            <img src="fotologado/adm.webp" class="usuarioIcon" alt="adm"> 
             <div class="socioBox">
                 ACESSAR <br> <span class="destaque">SÓCIO</span>
             </div>
         </nav>
+
     </header>
 
      <main class="mainContent">
+
+     
+
         <div class="matchInfo">
             <div class="matchDetails">
                 <span class="time">SÁBADO | 18:00</span>
