@@ -1,0 +1,22 @@
+/* Estilo para a Mensagem de Status */
+.h4b-message {
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: all 0.5s ease;
+}
+
+.h4b-message.success {
+    background-color: #2ecc7133; /* Fundo verde transparente */
+    color: var(--cor-sucesso); /* Texto verde */
+    border-color: var(--cor-sucesso);
+}
+
+.h4b-message.error {
+    background-color: #e74c3c33; /* Fundo vermelho transparente */
+    color: #e74c3c; /* Texto vermelho */
+    border-color: #e74c3c;
+}
