@@ -14,7 +14,6 @@ public class AuthController {
 
         // Rota de login
         app.post("/login", ctx -> {
-            // Lendo JSON enviado pelo fetch
             Map<String, String> json = ctx.bodyAsClass(Map.class);
             String username = json.get("username");
             String password = json.get("password");
@@ -27,10 +26,38 @@ public class AuthController {
             }
 
             String token = UUID.randomUUID().toString();
-            repo.updateToken(user.getId(), token); // corrige user.id
 
-            ctx.json(token);
+            // Coloque try/catch aqui
+            try {
+                repo.updateToken(user.getId(), token);
+            } catch (Exception e) {
+                System.err.println("Erro ao atualizar token no banco: " + e.getMessage());
+                e.printStackTrace();
+                // Mas mesmo assim vamos continuar e enviar o token
+            }
+
+            System.out.println("Token gerado: " + token);
+            ctx.json(Map.of("token", token));
         });
+
+        // validar o token e retornar dados do usuário
+        app.get("/perfil", ctx -> {
+        String token = ctx.header("Authorization");
+
+        if (token == null || repo.findByToken(token) == null) {
+            ctx.status(401).result("Token inválido ou ausente");
+            return;
+        }
+
+        User user = repo.findByToken(token);
+
+        ctx.json(Map.of(
+            "id", user.getId(),
+            "username", user.getUsername()
+        ));
+    });
+
+
 
         // Middleware proteção
         app.before("/api/*", ctx -> {

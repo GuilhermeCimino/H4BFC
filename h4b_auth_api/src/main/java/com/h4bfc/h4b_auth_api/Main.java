@@ -4,6 +4,10 @@ import io.javalin.Javalin;                               // Para criar o servido
 import com.h4bfc.h4b_auth_api.database.SQLiteConnection;  // Para criar/verificar tabela
 import com.h4bfc.h4b_auth_api.repository.UserRepository;
 import com.h4bfc.h4b_auth_api.controller.AuthController;
+import com.h4bfc.h4b_auth_api.model.User;
+
+//ver funcionando   http://localhost:7070/login.html
+
 
 public class Main {
 
@@ -14,11 +18,18 @@ public class Main {
         // ===== CRIA O USUÁRIO AUTOMATICAMENTE =====
         UserRepository repo = new UserRepository();
         try {
-            repo.create("admin1", "1234");
-            System.out.println("Usuário admin1 criado com sucesso!");
+            User existing = repo.find("admin1@gmail.com", "1234"); // tenta encontrar usuário com email correto
+            if (existing == null) {
+                repo.create("admin1@gmail.com", "1234");
+                System.out.println("Usuário admin1@gmail.com criado com sucesso!");
+            } else {
+                repo.updatePassword(existing.getId(), "1234");
+                System.out.println("Usuário já existe, senha atualizada.");
+            }
         } catch (Exception e) {
-            System.out.println("Usuário já existe, seguindo normalmente...");
+            e.printStackTrace();
         }
+
         // ===========================================
 
         // Inicializa servidor Javalin

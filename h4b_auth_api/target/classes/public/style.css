@@ -39,6 +39,85 @@ body {
     border-bottom: 2px solid var(--color-primary); 
 }
 
+
+
+
+/* -- Edição top nav imagem e nome usuario -- */
+/* -- Top nav: imagem, nome e dropdown -- */
+.topNav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+    position: relative; 
+    overflow: visible;  
+    z-index: 500;       
+    background-color: #000; /* opcional */
+}
+
+.bemVindo {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.usuarioWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    z-index: 1; 
+}
+
+.usuarioIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Dropdown escondido por padrão */
+.dropdownMenu {
+     display: none;        /* invisível até clicar */
+    position: fixed;      /* fica sobre todo o conteúdo */
+    top: 60px;            /* ajuste a altura para ficar abaixo da navbar */
+    right: 72px;          /* ajuste horizontal para alinhar com a imagem */
+    background-color: #1c1c1c;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 9999;        /* muito acima do resto da página */
+    white-space: nowrap;
+}
+
+/* Link do dropdown */
+.dropdownMenu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.dropdownMenu a:hover {
+    color: #ff4d4d;
+}
+
+.socioBox {
+    margin-left: auto;
+    text-align: right;
+    font-weight: bold;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
 .logoContainer {
     /* MUDANÇA CRÍTICA: Faz a imagem e o texto se empilharem */
     display: flex;
