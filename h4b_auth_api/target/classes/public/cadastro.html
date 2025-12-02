@@ -1,112 +1,325 @@
-<script>
-
-// PROTEÇÃO POR TOKEN - CADASTRO ADM
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Verificando autenticação...');
-    
-    // PEGA TOKEN
-    const token = localStorage.getItem('h4bfc_token');
-    
-    // SE NÃO TIVER TOKEN = REDIRECIONA
-    if (!token) {
-        console.error('Token não encontrado!');
-        alert('ACESSO RESTRITO!\n\nFaça login como administrador primeiro.');
-        window.location.href = 'login.html';
-        return;
-    }
-    
-    console.log('Token encontrado');
-    
-    // VERIFICA TOKEN NA API (/perfil)
-    fetch('/perfil', {
-        method: 'GET',
-        headers: {
-            'Authorization': token
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - H4B F.C.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    })
-    .then(response => {
-        if (response.ok) {
-            console.log('Token válido! Acesso administrativo permitido.');
-            // Mostra que é ADM
-            const h2 = document.querySelector('h2');
-            if (h2) {
-                h2.innerHTML = 'Cadastrar Novo Funcionário <span style="color: green; font-size: 14px;">(Acesso Administrativo)</span>';
-            }
-        } else {
-            throw new Error('Token inválido');
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #FF69B4 0%, #FF69B4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
-    })
-    .catch(error => {
-        console.error('Token inválido:', error);
-        localStorage.removeItem('h4bfc_token');
-        alert('Sessão expirada! Faça login novamente.');
-        window.location.href = 'login.html';
-    });
-    
-    // ADICIONA BOTÃO DE SAIR
-    const container = document.querySelector('.h4b-login-container');
-    if (container) {
-        const logoutBtn = document.createElement('button');
-        logoutBtn.textContent = '🚪 Sair';
-        logoutBtn.style.cssText = `
+        
+        .h4b-cadastro-container {
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .h4b-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .h4b-logo img {
+            max-width: 200px;
+            height: auto;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+        }
+        
+        .h4b-cadastro-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+        }
+        
+        .h4b-cadastro-box h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .h4b-cadastro-box h2:after {
+            content: '';
             position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #FF69B4, #FF69B4);
+            border-radius: 2px;
+        }
+        
+        .h4b-input-group {
+            margin-bottom: 25px;
+        }
+        
+        .h4b-input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .h4b-input-group input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .h4b-input-group input:focus {
+            border-color: #FF69B4;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .h4b-cadastro-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #FF69B4 0%, #FF69B4 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+        
+        .h4b-cadastro-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(102, 126, 234, 0.25);
+        }
+        
+        .h4b-cadastro-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .h4b-logout-btn {
+            position: fixed;
             top: 20px;
             right: 20px;
-            padding: 8px 16px;
             background: #dc3545;
             color: white;
             border: none;
-            border-radius: 4px;
+            padding: 10px 20px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
-        `;
-        logoutBtn.onclick = function() {
-            if (confirm('Sair do modo administrativo?')) {
-                localStorage.removeItem('h4bfc_token');
-                window.location.href = 'login.html';
-            }
-        };
-        container.style.position = 'relative';
-        container.appendChild(logoutBtn);
-    }
-});
-
-
-// FORMULÁRIO COM TOKEN
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('cadastroForm');
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        
+        .h4b-logout-btn:hover {
+            background: #c82333;
+        }
+        
+        .h4b-status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .h4b-status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .h4b-status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        .h4b-user-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Botão de Logout -->
+    <button class="h4b-logout-btn" id="logoutBtn">SAIR</button>
     
-    if (form) {
+    <div class="h4b-cadastro-container">
+        <div class="h4b-logo">
+            <img src="time/logo boto branco.png" alt="H4B F.C.">
+        </div>
+        
+        <div class="h4b-cadastro-box">
+            <h2>Cadastro de Jogador</h2>
+            
+            <!-- Informações do Usuário -->
+            <div class="h4b-user-info" id="userInfo">
+                Usuário: <span id="loggedUser">Carregando...</span>
+            </div>
+            
+            <!-- Mensagens de Status -->
+            <div class="h4b-status" id="statusMessage"></div>
+            
+            <!-- Formulário de Cadastro -->
+            <form id="cadastroForm">
+                <div class="h4b-input-group">
+                    <label for="h4b-nome">Nome Completo *</label>
+                    <input type="text" id="h4b-nome" name="nome" required 
+                           placeholder="Digite o nome completo">
+                </div>
+                
+                <div class="h4b-input-group">
+                    <label for="h4b-email">E-mail *</label>
+                    <input type="email" id="h4b-email" name="email" required 
+                           placeholder="Digite o e-mail">
+                </div>
+                
+                <div class="h4b-input-group">
+                    <label for="h4b-telefone">Telefone</label>
+                    <input type="tel" id="h4b-telefone" name="telefone" 
+                           placeholder="(11) 99999-9999">
+                </div>
+                
+                <div class="h4b-input-group">
+                    <label for="h4b-posicao">Posição</label>
+                    <input type="text" id="h4b-posicao" name="posicao" 
+                           placeholder="Ex: Atacante, Zagueiro, Goleiro">
+                </div>
+                
+                <div class="h4b-input-group">
+                    <label for="h4b-observacoes">Observações</label>
+                    <input type="text" id="h4b-observacoes" name="observacoes" 
+                           placeholder="Observações adicionais">
+                </div>
+                
+                <button type="submit" class="h4b-cadastro-btn" id="submitBtn">
+                    Cadastrar Jogador
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    
+    // PROTEÇÃO DA PÁGINA - VERIFICA LOGIN
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('=== PÁGINA DE CADASTRO H4B ===');
+        
+        // 1. VERIFICA SE O USUÁRIO ESTÁ LOGADO (CORRIGIDO)
+        const token = localStorage.getItem('h4bfc_token');
+        console.log('Token encontrado:', token ? 'SIM' : 'NÃO');
+        
+        //  CORREÇÃO AQUI: Se não tem token, volta para o login SEM ALERTA
+        if (!token) {
+            console.log('❌ Token não encontrado! Redirecionando para login...');
+            window.location.href = '/login.html';
+            return;
+        }
+        
+        console.log('✅ Usuário autenticado com sucesso!');
+        
+        //  MOSTRA INFORMAÇÕES DO USUÁRIO
+        try {
+            fetch('/perfil', {
+                headers: { 'Authorization': token }
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json().then(data => {
+                        document.getElementById('loggedUser').textContent = 
+                            data.username || 'Usuário Logado';
+                    });
+                }
+            })
+            .catch(() => {
+                document.getElementById('loggedUser').textContent = 'Usuário Logado';
+            });
+        } catch (error) {
+            document.getElementById('loggedUser').textContent = 'Usuário Logado';
+        }
+        
+        //  CONFIGURA BOTÃO DE LOGOUT
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                localStorage.removeItem('h4bfc_token');
+                window.location.href = '/login.html';
+            }
+        });
+        
+        //  CONFIGURA FORMULÁRIO DE CADASTRO
+        const form = document.getElementById('cadastroForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusMessage = document.getElementById('statusMessage');
+        
+        if (!form) {
+            console.error('❌ Formulário não encontrado!');
+            return;
+        }
+        
         form.addEventListener('submit', async function(event) {
             event.preventDefault();
+            console.log('📝 Iniciando cadastro...');
             
-            const token = localStorage.getItem('h4bfc_token');
-            if (!token) {
-                alert('Sessão expirada!');
-                window.location.href = 'login.html';
+            // Coleta dados do formulário
+            const dados = {
+                nome: document.getElementById('h4b-nome').value.trim(),
+                email: document.getElementById('h4b-email').value.trim(),
+                telefone: document.getElementById('h4b-telefone').value.trim(),
+                posicao: document.getElementById('h4b-posicao').value.trim(),
+                observacoes: document.getElementById('h4b-observacoes').value.trim()
+            };
+            
+            // Validação básica
+            if (!dados.nome || !dados.email) {
+                showMessage('Preencha nome e e-mail!', 'error');
                 return;
             }
             
-            // Pega dados
-            const nome = document.getElementById('h4b-nome').value;
-            const email = document.getElementById('h4b-email').value;
-            
-            if (!nome || !email) {
-                alert('Preencha todos os campos!');
+            if (!validateEmail(dados.email)) {
+                showMessage('E-mail inválido!', 'error');
                 return;
             }
             
-            // Mostra processando
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn ? submitBtn.textContent : 'Cadastrar';
-            if (submitBtn) {
-                submitBtn.textContent = 'Processando...';
-                submitBtn.disabled = true;
-            }
+            // Mostra loading no botão
+            const btnText = submitBtn.textContent;
+            submitBtn.textContent = 'Cadastrando...';
+            submitBtn.disabled = true;
             
             try {
-                // ENVIA PARA API COM TOKEN
-                console.log('Enviando para /api/cadastro...');
+                //  ENVIA PARA API BACKEND
+                console.log('Enviando dados para API...', dados);
                 
                 const response = await fetch('/api/cadastro', {
                     method: 'POST',
@@ -114,47 +327,93 @@ document.addEventListener('DOMContentLoaded', function() {
                         'Content-Type': 'application/json',
                         'Authorization': token
                     },
-                    body: JSON.stringify({
-                        nome: nome,
-                        email: email
-                    })
+                    body: JSON.stringify(dados)
                 });
                 
-                console.log('Resposta:', response.status);
+                console.log('Resposta da API:', response.status);
                 
                 if (response.ok) {
-                    const resultado = await response.json();
-                    alert('✅ ' + resultado.message);
+                    const result = await response.json();
+                    console.log('✅ Cadastro bem-sucedido:', result);
                     
-                    // Mostra mensagem no div
-                    const messageDiv = document.getElementById('statusMessage');
-                    if (messageDiv) {
-                        messageDiv.textContent = '✅ ' + resultado.message;
-                        messageDiv.style.display = 'block';
-                        messageDiv.style.backgroundColor = '#d4edda';
-                        messageDiv.style.color = '#155724';
-                    }
+                    showMessage(
+                        result.message || '🎉 Jogador cadastrado com sucesso!', 
+                        'success'
+                    );
                     
-                    // Limpa formulário
+                    // Limpa formulário após sucesso
                     form.reset();
                     
+                    // Mantém a mensagem por 5 segundos
+                    setTimeout(() => {
+                        statusMessage.style.display = 'none';
+                    }, 5000);
+                    
                 } else {
-                    const erro = await response.text();
-                    alert('Erro: ' + erro);
+                    const errorText = await response.text();
+                    console.error('❌ Erro da API:', errorText);
+                    showMessage('Erro no servidor: ' + errorText, 'error');
                 }
                 
             } catch (error) {
-                console.error('Erro:', error);
-                alert('🔌 Erro de conexão!');
+                console.error(' Erro de conexão:', error);
+                
+                // Modo offline: salva localmente
+                showMessage(
+                    '⚠️ Servidor offline. Dados salvos localmente.', 
+                    'error'
+                );
+                
+                // Salva no localStorage como backup
+                const cadastros = JSON.parse(localStorage.getItem('h4b_cadastros_offline') || '[]');
+                cadastros.push({
+                    ...dados,
+                    data: new Date().toISOString(),
+                    sincronizado: false
+                });
+                localStorage.setItem('h4b_cadastros_offline', JSON.stringify(cadastros));
+                
+                console.log('Dados salvos localmente:', cadastros.length, 'cadastros');
                 
             } finally {
                 // Restaura botão
-                if (submitBtn) {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                }
+                submitBtn.textContent = btnText;
+                submitBtn.disabled = false;
             }
         });
-    }
-});
-</script>
+        
+        console.log(' Página de cadastro pronta para uso!');
+        
+        // Função auxiliar para mostrar mensagens
+        function showMessage(text, type) {
+            statusMessage.textContent = text;
+            statusMessage.className = 'h4b-status ' + type;
+            statusMessage.style.display = 'block';
+            
+            // Role para a mensagem
+            statusMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        // Função para validar e-mail
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        //  TENTA SINCRONIZAR DADOS OFFLINE 
+        function sincronizarDadosOffline() {
+            const cadastrosOffline = JSON.parse(
+                localStorage.getItem('h4b_cadastros_offline') || '[]'
+            );
+            
+            if (cadastrosOffline.length > 0) {
+                console.log('Tentando sincronizar', cadastrosOffline.length, 'cadastros offline...');
+            }
+        }
+        
+        // Tenta sincronizar ao carregar
+        sincronizarDadosOffline();
+    });
+    </script>
+</body>
+</html>

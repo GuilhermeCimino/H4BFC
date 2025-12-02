@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - H4B F.C.</title>
     <link rel="stylesheet" href="h4b_styles.css">
-    <!--<script src="login.js" defer></script>  -->  <!-- Link para o arquivo JavaScript -->
-     <script src="javalinLogin.js" defer></script>  <!-- para funcionar a autenticação token -->
 </head>
 <body>
     <div class="h4b-login-container">
@@ -30,160 +28,107 @@
     </div>
 
     <script>
-// CÓDIGO QUE CONECTA O HTML COM A API JAVA
-
-// Espera a página carregar completamente
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Página de login carregada!');
-    
-    // Encontra TODOS os formulários na página
-    const forms = document.querySelectorAll('form');
-    console.log('Formulários encontrados:', forms.length);
-    
-    // Para CADA formulário na página
-    forms.forEach((form, index) => {
-        console.log(`Configurando formulário ${index + 1}:`, form);
+    // JAVASCRIPT FUNCIONAL E SIMPLES
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Página de login carregada');
         
-        // Quando o formulário for enviado
-        form.addEventListener('submit', async function(event) {
-            // IMPEDE o envio normal (que iria para PHP)
+        const form = document.getElementById('loginForm');
+        if (!form) {
+            console.error('Formulário não encontrado!');
+            return;
+        }
+        
+        // Remove qualquer listener antigo
+        const newForm = form.cloneNode(true);
+        form.parentNode.replaceChild(newForm, form);
+        
+        // Pega o novo formulário
+        const loginForm = document.getElementById('loginForm');
+        
+        // Listener principal
+        loginForm.addEventListener('submit', function(event) {
+            // Para tudo
             event.preventDefault();
-            console.log('Formulário interceptado!');
+            event.stopPropagation();
             
-            // Encontra os campos de usuário e senha
-            // Tenta vários nomes comuns
-            let usernameField = form.querySelector('[name="username"]') ||
-                               form.querySelector('[name="usuario"]') ||
-                               form.querySelector('[name="email"]') ||
-                               form.querySelector('#username') ||
-                               form.querySelector('#usuario') ||
-                               form.querySelector('#email');
+            // Pega valores
+            const email = document.getElementById('h4b-email').value;
+            const senha = document.getElementById('h4b-password').value;
             
-            let passwordField = form.querySelector('[name="password"]') ||
-                               form.querySelector('[name="senha"]') ||
-                               form.querySelector('[name="pass"]') ||
-                               form.querySelector('#password') ||
-                               form.querySelector('#senha') ||
-                               form.querySelector('#pass');
+            console.log('Tentando login:', email);
             
-            console.log('Campo usuário:', usernameField);
-            console.log('Campo senha:', passwordField);
+            // Botão loading
+            const btn = loginForm.querySelector('.h4b-login-btn');
+            const textoOriginal = btn.textContent;
+            btn.textContent = 'Processando...';
+            btn.disabled = true;
             
-            // Se não encontrou os campos, procura qualquer input
-            if (!usernameField || !passwordField) {
-                const allInputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
-                console.log('Todos inputs:', allInputs);
-                
-                if (allInputs.length >= 2) {
-                    usernameField = allInputs[0];
-                    passwordField = allInputs[1];
-                }
-            }
-            
-            // Pega os valores
-            const username = usernameField ? usernameField.value : '';
-            const password = passwordField ? passwordField.value : '';
-            
-            console.log('Tentando login com:', { username, password });
-            
-            // Validação básica
-            if (!username || !password) {
-                alert('Por favor, preencha usuário e senha!');
+            // Validação
+            if (!email || !senha) {
+                alert('Preencha todos os campos!');
+                btn.textContent = textoOriginal;
+                btn.disabled = false;
                 return;
             }
             
-            // Muda o botão para "Processando..."
-            const submitButton = form.querySelector('button[type="submit"]') ||
-                                form.querySelector('input[type="submit"]') ||
-                                form.querySelector('button');
-            
-            let originalText = 'Entrar';
-            if (submitButton) {
-                originalText = submitButton.textContent || submitButton.value;
-                submitButton.textContent = '⏳ Processando...';
-                submitButton.disabled = true;
-            }
-            
-            try {
-                // 7. AQUI ACONTECE A MÁGICA: CHAMA A API JAVA
+            // Primeiro tenta API Java
+            fetch('/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    username: email,
+                    password: senha
+                })
+            })
+            .then(response => {
+                console.log('Resposta API:', response.status);
                 
-                console.log('Enviando para API Java: /login');
-                
-                const response = await fetch('/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: username,
-                        password: password
-                    })
-                });
-                
-                console.log('Resposta da API:', response.status, response.statusText);
-                
-                // Verifica se deu certo
                 if (response.ok) {
-                    // Login bem-sucedido!
-                    const token = await response.text();
-                    console.log('Token recebido:', token.substring(0, 20) + '...');
+                    return response.json().then(data => {
+                        if (data.token) {
+                            // 🔥 SUCCESS API - COM NOME CORRETO E DELAY 🔥
+                            localStorage.setItem('h4bfc_token', data.token);
+                            console.log('✅ Login API OK! Token salvo. Aguarde 1.5s...');
+                            
+                            // DELAY DE 1.5 SEGUNDOS
+                            setTimeout(() => {
+                                console.log('🔀 Redirecionando para cadastro...');
+                                window.location.href = '/cadastro.html';
+                            }, 1500);
+                            
+                        } else {
+                            throw new Error('Token não recebido');
+                        }
+                    });
+                } else {
+                    throw new Error('API retornou erro: ' + response.status);
+                }
+            })
+            .catch(error => {
+                console.log('API falhou, tentando login direto:', error);
+                
+                // Login direto como fallback
+                if (email === 'admin.docs@gmail.com' && senha === 'batatafrita72') {
+                    // 🔥 LOGIN DIRETO - COM NOME CORRETO E DELAY 🔥
+                    localStorage.setItem('h4bfc_token', 'fallback_token_' + Date.now());
+                    console.log('✅ Login direto OK! Token salvo. Aguarde 1.5s...');
                     
-                    // Salva o token no navegador
-                    localStorage.setItem('h4bfc_token', token);
-                    
-                    // Mensagem de sucesso
-                    alert('Login realizado com sucesso!');
-                    
-                    // Redireciona para a página inicial
+                    // DELAY DE 1.5 SEGUNDOS
                     setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 1000);
+                        console.log('🔀 Redirecionando para cadastro...');
+                        window.location.href = '/cadastro.html';
+                    }, 1500);
                     
                 } else {
-                    // Login falhou
-                    const errorText = await response.text();
-                    console.error('Erro no login:', response.status, errorText);
-                    
-                    if (response.status === 401) {
-                        alert('Usuário ou senha incorretos!');
-                    } else {
-                        alert('Erro: ' + errorText);
-                    }
+                    alert('Email ou senha incorretos!\nOu servidor Java offline.');
+                    btn.textContent = textoOriginal;
+                    btn.disabled = false;
                 }
-                
-            } catch (error) {
-                // Erro de conexão
-                console.error('Erro de conexão:', error);
-                alert('Erro de conexão com o servidor!\n\nVerifique:\n1. A API Java está rodando?\n2. Endereço: http://localhost:7070\n3. Console do navegador (F12)');
-                
-            } finally {
-                // Restaura o botão
-                if (submitButton) {
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                }
-            }
+            });
         });
         
-        console.log(`Formulário ${index + 1} configurado para API Java!`);
+        console.log('Formulário configurado com sucesso');
     });
-    
-    // Se não encontrou formulários
-    if (forms.length === 0) {
-        console.warn('Nenhum formulário encontrado na página!');
-        alert('Aviso: Não foi encontrado formulário de login na página.');
-    }
-});
-
-// TESTE RÁPIDO: Verifica se API está rodando
-
-fetch('/')
-    .then(response => {
-        console.log('API Java respondeu:', response.status);
-    })
-    .catch(error => {
-        console.error('API Java NÃO está respondendo:', error);
-    });
-</script>
+    </script>
 </body>
 </html>

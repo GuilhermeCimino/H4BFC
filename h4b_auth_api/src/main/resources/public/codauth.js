@@ -6,7 +6,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
 
     if (codigoDigitado === codigoCorreto) {
         // Redireciona para a página de criar conta
-        window.location.href = "criarConta.html";
+        window.location.href = "cadastro.html";
     } else {
         alert("Código incorreto! Tente novamente.");
     }
