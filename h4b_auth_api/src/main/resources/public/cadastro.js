@@ -1,37 +1,42 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('cadastroForm');
-    const statusMessage = document.getElementById('statusMessage');
-    const passwordInput = document.getElementById('h4b-password');
-    const confirmPasswordInput = document.getElementById('h4b-confirm-password');
+// cadastro.js - Versão com proteção por token
 
-    form.addEventListener('submit', function(event) {
-        // Previne o envio padrão do formulário (o que faria a página recarregar)
-        event.preventDefault(); 
+console.log('🔧 cadastro.js carregado (versão com token)');
 
-        // 1. Limpa mensagens anteriores
-        statusMessage.style.display = 'none';
-        statusMessage.classList.remove('success', 'error');
+// A proteção principal já está no HTML
+// Este arquivo pode conter funções auxiliares se necessário
 
-        // 2. Validação da senha
-        if (passwordInput.value !== confirmPasswordInput.value) {
-            // Se as senhas não coincidirem
-            statusMessage.textContent = 'Erro: As senhas digitadas não coincidem.';
-            statusMessage.classList.add('error');
-            statusMessage.style.display = 'block';
-            return; // Interrompe o processo
+function validarEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+function mostrarMensagem(texto, tipo = 'sucesso') {
+    const div = document.getElementById('statusMessage');
+    if (div) {
+        div.textContent = texto;
+        div.style.display = 'block';
+        
+        if (tipo === 'sucesso') {
+            div.style.backgroundColor = '#d4edda';
+            div.style.color = '#155724';
+        } else {
+            div.style.backgroundColor = '#f8d7da';
+            div.style.color = '#721c24';
         }
         
-        // 3. Simulação de Cadastro BEM-SUCEDIDO
-        
-        // Esconde o formulário
-        form.style.display = 'none';
-        
-        // Exibe a mensagem de sucesso
-        statusMessage.textContent = '✅ Cadastro Finalizado! O novo funcionário já pode fazer o Login ADM.';
-        statusMessage.classList.add('success');
-        statusMessage.style.display = 'block';
+        // Esconde após 5 segundos
+        setTimeout(() => {
+            div.style.display = 'none';
+        }, 5000);
+    }
+}
 
-        // 4. Se fosse um sistema real, você enviaria os dados
-        // Para um servidor aqui (usando fetch() ou XMLHttpRequest)
-    });
-});
+// Função para verificar token (pode ser usada por outras páginas)
+function verificarAutenticacao() {
+    const token = localStorage.getItem('h4bfc_token');
+    if (!token) {
+        window.location.href = 'login.html';
+        return false;
+    }
+    return true;
+}

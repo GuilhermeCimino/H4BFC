@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - H4B F.C.</title>
+    <style>
+        body { font-family: Arial; max-width: 400px; margin: 50px auto; padding: 20px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h2>Login H4B FC</h2>
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="Email" value="admin1@gmail.com" required>
+        <input type="password" id="password" placeholder="Senha" value="1234" required>
+        <button type="submit">Entrar</button>
+    </form>
+    
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        const btn = document.querySelector('button');
+        const originalText = btn.textContent;
+        btn.textContent = 'Processando...';
+        btn.disabled = true;
+        
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: email, password: password })
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem('h4bfc_token', data.token);
+                alert('✅ Login realizado com sucesso!');
+                window.location.href = '/cadastro.html';
+            } else {
+                alert('❌ Erro: ' + await response.text());
+            }
+        } catch (error) {
+            alert('🔌 Erro de conexão: ' + error.message);
+        } finally {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }
+    });
+    </script>
+</body>
+</html>
