@@ -78,3 +78,20 @@ body {
 .h4b-login-btn:hover {
     background-color: #ff69b494;
 }
+
+.h4b-login {
+    width: 100%;
+    padding: 8px;
+    background-color: #FF69B4;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
+
+}
+
+.h4b-login:hover {
+    background-color: #ff69b494;
+}
