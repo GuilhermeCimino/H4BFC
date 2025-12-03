@@ -16,7 +16,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     if (email === validEmail && password === validPassword) {
         // Redireciona para a página indexLogado.html dentro da pasta 'logado'
         console.log('Credenciais corretas, redirecionando...');
-        window.location.href = '/cadastro.html';
+        window.location.href = 'http://127.0.0.1:5500/h4b_auth_api/src/main/resources/public/logado/indexLogado.html';
     } else {
         // Exibe uma mensagem de erro caso as credenciais estejam erradas
         alert('E-mail ou senha incorretos!');
